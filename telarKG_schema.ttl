@@ -1,0 +1,1244 @@
+@prefix : <'https://telarkg.imfd.cl/'> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix owl: <http://www.w3.org/2002/07/owl#>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix foaf: <http://xmlns.com/foaf/0.1/>.
+@prefix dc: <http://purl.org/dc/elements/1.1/>.
+
+: a owl:Ontology;
+    rdfs:label "TelarKG"@en;
+    rdfs:comment "TelarKG is a Knowledge Graph collecting together data about the Chilean Constitutional Convention, whose objective was to draft a new constitution for Chile. Information is provided regarding the convention members (class ConventionMember), including their party, pact, gender, etc. The votes of each convention member during the process are stored as edges targetting the plenary material (PlenaryMaterial) or commission material (CommissionMaterial) being voted upon. Videos (Video) of all plenary and commission sessions are described, along with interventions by members, automated transcripts and chat comments. Each convention member (class ConventionMember) contains one or more social media accounts (TwitterAccount, FacebookAccount and InstagramAccount), which in turn are related to social media posts by them, along with other related posts. Next is shown the schema of the graph, further indicating the number of instances for each class."@en;
+    owl:versionInfo "1.0"@en;
+    dc:creator "IMFD"@es;
+
+# Classes
+# Convention member
+:ConventionMember a owl:Class;
+    rdfs:label "ConventionMember"@en;
+    rdfs:comment "A member of a convention"@en;
+    rdfs:subClassOf foaf:Person .
+
+# Properties with ConventionMember domain
+:inVoteName a owl:DatatypeProperty;
+    rdfs:label "inVoteName"@en;
+    rdfs:comment "Nombre completo en padrón electoral"@es;
+    rdfs:comment "Full name in electoral roll"@en;
+    rdfs:subClassOf foaf:name;
+    rdfs:domain :ConventionMember;
+    rdfs:range xsd:string .
+
+:age a owl:DatatypeProperty;
+    rdfs:label "age"@en;
+    rdfs:comment "Edad"@es;
+    rdfs:comment "Age"@en;
+    rdfs:domain :ConventionMember;
+    rdfs:range xsd:integer .
+
+:c a owl:DatatypeProperty;
+    rdfs:label "code"@en;
+    rdfs:comment "Código del miembro de la convención"@es;
+    rdfs:comment "Code of the convention member"@en;
+    rdfs:domain :ConventionMember;
+    rdfs:range xsd:string .
+
+:charge a owl:DatatypeProperty;
+    rdfs:label "charge"@en;
+    rdfs:comment "Código del cargo del miembro de la convención"@es;
+    rdfs:comment "Charge code of the convention member"@en;
+    rdfs:domain :ConventionMember;
+    rdfs:range xsd:string .
+
+# TODO
+:name a owl:DatatypeProperty;
+    rdfs:label "name"@en;
+    owl:sameAs foaf:name;
+    rdfs:domain :ConventionMember;
+    rdfs:range xsd:string .
+
+:orden a owl:DatatypeProperty;
+    rdfs:label "orden"@en;
+    rdfs:comment "Orden del miembro de la convención"@es;
+    rdfs:comment "Order of the convention member"@en;
+    rdfs:domain :ConventionMember;
+    rdfs:range xsd:integer .
+
+:photo a owl:DatatypeProperty;
+    rdfs:label "photo"@en;
+    rdfs:comment "¿existe fotografía del miembro de la convención"@es;
+    rdfs:comment "Is there a photo of the convention member?"@en;
+    rdfs:domain :ConventionMember;
+    rdfs:range xsd:boolean .
+
+# TODO
+:web a owl:DatatypeProperty;
+    owl:sameAs foaf:homepage;
+    rdfs:label "web"@en;
+    rdfs:comment "Sitio web del miembro de la convención"@es;
+    rdfs:comment "Website of the convention member"@en;
+    rdfs:domain :ConventionMember;
+    rdfs:range xsd:string .
+
+:zone a owl:DatatypeProperty;
+    rdfs:label "zone"@en;
+    rdfs:comment "Código de zona del miembro de la convención"@es;
+    rdfs:comment "Zone code of the convention member"@en;
+    rdfs:domain :ConventionMember;
+    rdfs:range xsd:string .
+
+:occupation a owl:DatatypeProperty;
+    rdfs:label "occupation"@en;
+    rdfs:comment "Ocupación del miembro de la convención"@es;
+    rdfs:comment "Occupation of the convention member"@en;
+    rdfs:domain :ConventionMember;
+    rdfs:range xsd:string .
+
+dc:description rdfs:domain :ConventionMember ;
+    rdfs:range xsd:string .
+
+:elections a owl:DatatypeProperty;
+    rdfs:label "elections"@en;
+    rdfs:comment "Datos electorales del miembro de la convención"@es;
+    rdfs:comment "Election data of the convention member"@en;
+    rdfs:domain :ConventionMember;
+    rdfs:range xsd:string .
+
+:patrimony a owl:DatatypeProperty;
+    rdfs:label "patrimony"@en;
+    rdfs:comment "Código de patrimonio del miembro de la convención"@es;
+    rdf:comment "Patrimony code of the convention member"@en;
+    rdfs:domain :ConventionMember;
+    rdfs:range xsd:string .
+
+# TODO
+:pact2409 a owl:DatatypeProperty;
+    rdfs:label "pact"@en;
+    rdfs:comment "Propiedad que relaciona un miembro de la convención y el partido político que representa"@es;
+    rdfs:comment "Property that relates a convention member and the political party they represent"@en;
+    rdfs:domain :ConventionMember;
+    rdfs:range :Pact .
+
+:nominateNames a owl:DatatypeProperty;
+    rdfs:label "nominateNames"@en;
+    rdfs:comment "Nombre en la nómina del miembro de la convención"@es;
+    rdfs:comment "Name in the convention member's list"@en;
+    rdfs:domain :ConventionMember;
+    rdfs:range xsd:string .
+
+:nombreEnPartido a owl:DatatypeProperty;
+    rdfs:label "nombreEnPartido"@en;
+    rdfs:comment "Nombre en el partido del miembro de la convención"@es;
+    rdfs:comment "Name in the convention member's party"@en;
+    rdfs:domain :ConventionMember;
+    rdfs:range xsd:string .
+
+:wikidata a owl:DatatypeProperty;
+    rdfs:label "wikidata"@en;
+    rdfs:comment "Identificador de Wikidata del miembro de la convención"@es;
+    rdfs:comment "Wikidata identifier of the convention member"@en;
+    rdfs:domain :ConventionMember;
+    rdfs:range xsd:string .
+
+# TODO
+:alternative a owl:DatatypeProperty;
+    rdfs:label "alternative"@en;
+    rdfs:comment "Nombre alternativo del miembro de la convención"@es;
+    rdfs:comment "Alternative name of the convention member"@en;
+    rdfs:domain :ConventionMember;
+    rdfs:range xsd:string .
+
+:resignation a owl:DatatypeProperty;
+    rdfs:label "resignation"@en;
+    rdfs:comment "¿El miembro de la convención resignó?"@es;
+    rdfs:comment "Did the convention member resign?"@en;
+    rdfs:domain :ConventionMember;
+    rdfs:domain xsd:boolean .
+
+foaf:gender rdfs:domain :ConventionMember ;
+    rdfs:range :Gender .
+
+:part a owl:ObjectProperty;
+    rdfs:label "part"@en;
+    rdfs:comment "Partido político del miembro de la convención"@es;
+    rdfs:comment "Political party of the convention member"@en;
+    rdfs:domain :ConventionMember;
+    rdfs:range :Party .
+
+:candidateOf a owl:ObjectProperty;
+    rdfs:label "candidateOf"@en;
+    rdfs:comment "Partido político del miembro de la convención durante elecciones"@es;
+    rdfs:comment "Political party of the convention member during elections"@en;
+    rdfs:domain :ConventionMember;
+    rdfs:range :Candidate .
+
+:hasAccount a owl:ObjectProperty;
+    rdfs:label "hasAccount"@en;
+    rdfs:comment "Propiedad que relaciona una persona con una cuenta de red social"@es;
+    rdfs:comment "Property that relates a person with a social media account"@en;
+    rdfs:domain :Person;
+    rdfs:range foaf:OnlineAccount .
+
+:district a owl:DatatypeProperty;
+    rdfs:label "district"@en;
+    rdfs:comment "Distrito del miembro de la convención"@es;
+    rdfs:comment "District of the convention member"@en;
+    rdfs:domain :ConventionMember;
+    rdfs:range :District .
+
+:politicalGroupConvention a owl:ObjectProperty;
+    rdfs:label "politicalGroupConvention"@en;
+    rdfs:comment "Grupo político del miembro de la convención"@es;
+    rdfs:comment "Political group of the convention member"@en;
+    rdfs:domain :ConventionMember;
+    rdfs:range :PoliticalGroupConvention .
+
+# TODO
+:vote a owl:ObjectProperty;
+    rdfs:label "vote"@en;
+    rdfs:comment "Voto del miembro de la convención"@es;
+    rdfs:comment "Vote of the convention member"@en;
+    rdfs:domain :ConventionMember .
+
+#######################################################################################
+# Chat
+# TODO
+:Chat a owl:Class;
+    rdfs:label "Chat"@en;
+    rdfs:comment "Chat de una sesión de la convención"@es;
+    rdfs:comment "Chat of a convention session"@en;
+    rdfs:subClassOf owl:Thing .
+
+# Properties with Chat domain
+# TODO dc:date
+:date a owl:DatatypeProperty;
+    rdfs:domain :Chat;
+    rdfs:range xsd:date .
+
+:session a owl:DatatypeProperty;
+    rdfs:label "session"@en;
+    rdfs:comment "Sesión del chat"@es;
+    rdfs:comment "Session of the chat"@en;
+    rdfs:domain :Chat;
+    rdfs:range xsd:string .
+
+:text a owl:DatatypeProperty;
+    rdfs:label "text"@en;
+    rdfs:comment "Texto del chat"@es;
+    rdfs:comment "Text of the chat"@en;
+    rdfs:domain :Chat;
+    rdfs:range xsd:string .
+
+:user a owl:DatatypeProperty;
+    rdfs:label "user"@en;
+    rdfs:comment "Usuario del chat"@es;
+    rdfs:comment "User of the chat"@en;
+    rdfs:domain :Chat;
+    rdfs:range xsd:string .
+
+:timeYouTube a owl:DatatypeProperty;
+    rdfs:label "timeYouTube"@en;
+    rdfs:comment "Tiempo en YouTube del chat"@es;
+    rdfs:comment "YouTube time of the chat"@en;
+    rdfs:domain :Chat;
+    rdfs:range xsd:string .
+
+# Pact
+# TODO
+:Pact a owl:Class;
+    rdfs:label "Pact"@en;
+    rdfs:comment "Pacto electoral"@es;
+    rdfs:comment "Electoral pact"@en;
+    rdfs:subClassOf owl:Thing .
+
+# Properties with Pact domain
+:name rdfs:domain :Pact;
+    rdfs:range xsd:string .
+
+# Commission Material
+# TODO
+:CommissionMaterial a owl:Class;
+    rdfs:label "CommissionMaterial"@en;
+    rdfs:comment "Material de una comisión"@es;
+    rdfs:comment "Material of a commission"@en;
+    rdfs:subClassOf owl:Thing .
+
+# Properties with CommissionMaterial domain
+:name rdfs:domain :CommissionMaterial;
+    rdfs:range xsd:string .
+
+:material a owl:DatatypeProperty;
+    rdfs:label "material"@en;
+    rdfs:comment "Material de una comisión"@es;
+    rdfs:comment "Material of a commission"@en;
+    rdfs:domain :CommissionMaterial;
+    rdfs:range xsd:string .
+
+# TODO
+:nameCC a owl:DatatypeProperty;
+    rdfs:label "nameCC"@en;
+    rdfs:comment "Nombre del coordinador de la comisión"@es;
+    rdfs:comment "Name of the commission coordinator"@en;
+    rdfs:domain :CommissionMaterial;
+    rdfs:range xsd:string .
+
+# TODO
+:type a owl:DatatypeProperty;
+    rdfs:label "type"@en;
+    rdfs:comment "Tipo de material de una comisión"@es;
+    rdfs:comment "Type of commission material"@en;
+    rdfs:domain :CommissionMaterial;
+    rdfs:range xsd:string .
+
+:date rdfs:domain :CommissionMaterial;
+    rdfs:range xsd:date .
+
+:idVotation a owl:DatatypeProperty;
+    rdfs:label "idVotation"@en;
+    rdfs:comment "Identificador de votación de un material de una comisión"@es;
+    rdfs:comment "Votation identifier of a commission material"@en;
+    rdfs:domain :CommissionMaterial;
+    rdfs:range xsd:string .
+
+:totalAffirmative a owl:DatatypeProperty;
+    rdfs:label "totalAffirmative"@en;
+    rdfs:comment "Total de votos afirmativos de un material de una comisión"@es;
+    rdfs:comment "Total affirmative votes of a commission material"@en;
+    rdfs:domain :CommissionMaterial;
+    rdfs:range xsd:integer .
+
+#Negative
+:totalAgainst a owl:DatatypeProperty;
+    rdfs:label "totalAgainst"@en;
+    rdfs:comment "Total de votos en contra de un material de una comisión"@es;
+    rdfs:comment "Total negative votes of a commission material"@en;
+    rdfs:domain :CommissionMaterial;
+    rdfs:range xsd:integer .
+
+:totalAbstention a owl:DatatypeProperty;
+    rdfs:label "totalAbstention"@en;
+    rdfs:comment "Total de abstenciones"@es;
+    rdfs:comment "Total abstentions"@en;
+    rdfs:domain :CommissionMaterial;
+    rdfs:range xsd:integer .
+
+:commission a owl:ObjectProperty;
+    rdfs:label "commission"@en;
+    rdfs:comment "Comisión del material"@es;
+    rdfs:comment "Commission of the material"@en;
+    rdfs:domain :CommissionMaterial;
+    rdfs:range :Commission .
+
+:commissionSession a owl:ObjectProperty;
+    rdfs:label "commissionSession"@en;
+    rdfs:comment "Sesión de la comisión del material"@es;
+    rdfs:comment "Commission session of the material"@en;
+    rdfs:domain :CommissionMaterial;
+    rdfs:range :CommissionSession .
+
+# TODO
+:result a owl:ObjectProperty;
+    rdfs:label "result"@en;
+    rdfs:comment "Resultado de votación del material"@es;
+    rdfs:comment "Votation result of the material"@en;
+    rdfs:domain :CommissionMaterial;
+    rdfs:range :VoteResult .
+
+###########################################################################
+
+# Trending Topic
+# TODO
+:TrendingTopic a owl:Class;
+    rdfs:label "TrendingTopic"@en;
+    rdfs:comment "Trending topic"@en;
+    rdfs:subClassOf :Topic .
+
+# TODO dc:created
+:createdAt a owl:DatatypeProperty;
+    rdfs:label "createdAt"@en;
+    # owl:equivalentProperty dc:created;
+    rdfs:domain :TrendingTopic;
+    rdfs:range xsd:date .
+
+# Topic
+:Topic a owl:Class;
+    rdfs:label "Topic"@en;
+    rdfs:comment "Tema"@es;
+    rdfs:comment "Topic"@en;
+    rdfs:subClassOf skos:Concept .
+
+# Properties with Topic domain
+# TODO
+:query a owl:DatatypeProperty;
+    rdfs:label "query"@en;
+    rdfs:comment "Consulta del tema"@es;
+    rdfs:comment "Query of the topic"@en;
+    rdfs:domain :Topic;
+    rdfs:range xsd:string .
+
+# Transcription
+:Transcription a owl:Class;
+    rdfs:label "Transcription"@en;
+    rdfs:comment "Transcripción"@es;
+    rdfs:comment "Transcription"@en;
+    rdfs:subClassOf owl:Thing .
+
+# Properties with Transcription domain
+:date rdfs:domain :Transcription;
+    rdfs:range xsd:date .
+
+# TODO
+:session a owl:DatatypeProperty;
+    rdfs:label "session"@en;
+    rdfs:comment "Sesión de la transcripción"@es;
+    rdfs:comment "Session of the transcription"@en;
+    rdfs:domain :Transcription;
+    rdfs:range xsd:string .
+
+# TODO sioc:content for social media posts
+:text a owl:DatatypeProperty;
+    rdfs:subPropertyOf rdf:value;
+    rdfs:label "text"@en;
+    rdfs:comment "Texto de la transcripción"@es;
+    rdfs:comment "Text of the transcription"@en;
+    rdfs:domain :Transcription;
+    rdfs:range xsd:string .
+
+# Tweet
+:Tweet a owl:Class;
+    rdfs:label "Tweet"@en;
+    rdfs:comment "Tweet"@es;
+    rdfs:comment "Tweet"@en;
+    rdfs:subClassOf owl:Thing .
+
+# Properties with Tweet domain
+:id a owl:DatatypeProperty;
+    rdfs:label "id"@en;
+    rdfs:comment "Identificador"@es;
+    rdfs:comment "Identifier"@en;
+    rdfs:domain :Tweet;
+    rdfs:range xsd:string .
+
+:text rdfs:domain :Tweet .
+
+:createdAt rdfs:domain :Tweet .
+
+:isQuoteStatus a owl:DatatypeProperty;
+    rdfs:label "isQuoteStatus"@en;
+    rdfs:comment "¿Es un retweet?"@es;
+    rdfs:comment "Is it a retweet?"@en;
+    rdfs:domain :Tweet;
+    rdfs:range xsd:boolean .
+
+:truncated a owl:DatatypeProperty;
+    rdfs:label "truncated"@en;
+    rdfs:comment "¿Está truncado?"@es;
+    rdfs:comment "Is it truncated?"@en;
+    rdfs:domain :Tweet;
+    rdfs:range xsd:boolean .
+
+:favorited a owl:DatatypeProperty;
+    rdfs:label "favorited"@en;
+    rdfs:comment "¿Está favorito?"@es;
+    rdfs:comment "Is it favorited?"@en;
+    rdfs:domain :Tweet;
+    rdfs:range xsd:boolean .
+
+:retweetCount a owl:DatatypeProperty;
+    rdfs:label "retweetCount"@en;
+    rdfs:comment "Cantidad de retweets"@es;
+    rdfs:comment "Retweet count"@en;
+    rdfs:domain :Tweet;
+    rdfs:range xsd:integer .
+
+:favoriteCount a owl:DatatypeProperty;
+    rdfs:label "favoriteCount"@en;
+    rdfs:comment "Cantidad de favoritos"@es;
+    rdfs:comment "Favorite count"@en;
+    rdfs:domain :Tweet;
+    rdfs:range xsd:integer .
+
+:retweeted a owl:DatatypeProperty;
+    rdfs:label "retweeted"@en;
+    rdfs:comment "¿Está retweeteado?"@es;
+    rdfs:comment "Is it retweeted?"@en;
+    rdfs:domain :Tweet;
+    rdfs:range xsd:boolean .
+
+:inReplyToStatusIdStr a owl:DatatypeProperty;
+    rdfs:label "inReplyToStatusIdStr"@en;
+    rdfs:comment "Identificador del tweet al que responde"@es;
+    rdfs:comment "Identifier of the tweet it replies to"@en;
+    rdfs:domain :Tweet;
+    rdfs:range xsd:string .
+
+# TODO
+:inReplyToUserId a owl:DatatypeProperty;
+    rdfs:label "inReplyToUserId"@en;
+    rdfs:comment "Identificador del usuario al que responde"@es;
+    rdfs:comment "Identifier of the user it replies to"@en;
+    rdfs:domain :Tweet;
+    rdfs:range xsd:string .
+
+:inReplyToUserIdStr a owl:DatatypeProperty;
+    rdfs:label "inReplyToUserIdStr"@en;
+    rdfs:comment "Identificador del usuario al que responde"@es;
+    rdfs:comment "Identifier of the user it replies to"@en;
+    rdfs:domain :Tweet;
+    rdfs:range xsd:string .
+
+:inReplyToStatusId a owl:DatatypeProperty;
+    rdfs:label "inReplyToStatusId"@en;
+    rdfs:comment "Identificador del tweet al que responde"@es;
+    rdfs:comment "Identifier of the tweet it replies to"@en;
+    rdfs:domain :Tweet;
+    rdfs:range xsd:string .
+
+:inReplyToScreenName a owl:DatatypeProperty;
+    rdfs:label "inReplyToScreenName"@en;
+    rdfs:comment "Nombre de usuario al que responde"@es;
+    rdfs:comment "Screen name it replies to"@en;
+    rdfs:domain :Tweet;
+    rdfs:range xsd:string .
+
+:possiblySensitive a owl:DatatypeProperty;
+    rdfs:label "possiblySensitive"@en;
+    rdfs:comment "¿Es posiblemente sensible?"@es;
+    rdfs:comment "Is it possibly sensitive?"@en;
+    rdfs:domain :Tweet;
+    rdfs:range xsd:boolean .
+
+:quoteCount a owl:DatatypeProperty;
+    rdfs:label "quoteCount"@en;
+    rdfs:comment "Cantidad de citas"@es;
+    rdfs:comment "Quote count"@en;
+    rdfs:domain :Tweet;
+    rdfs:range xsd:integer .
+
+:replyCount a owl:DatatypeProperty;
+    rdfs:label "replyCount"@en;
+    rdfs:comment "Cantidad de respuestas"@es;
+    rdfs:comment "Reply count"@en;
+    rdfs:domain :Tweet;
+    rdfs:range xsd:integer .
+
+:filterLevel a owl:DatatypeProperty;
+    rdfs:label "filterLevel"@en;
+    rdfs:comment "Nivel de filtro"@es;
+    rdfs:comment "Filter level"@en;
+    rdfs:domain :Tweet;
+    rdfs:range xsd:string .
+
+# Speech
+:Speech a owl:Class;
+    rdfs:label "Speech"@en;
+    rdfs:comment "Intervención"@es;
+    rdfs:comment "Speech"@en;
+    rdfs:subClassOf owl:Thing .
+
+# Properties with Speech domain
+:bench a owl:DatatypeProperty;
+    rdfs:label "bench"@en;
+    rdfs:comment "Bancada de la intervención"@es;
+    rdfs:comment "Bench of the speech"@en;
+    rdfs:domain :Speech;
+    rdfs:range xsd:string .
+
+:session a owl:DatatypeProperty;
+    rdfs:label "session"@en;
+    rdfs:comment "Sesión de la intervención"@es;
+    rdfs:comment "Session of the speech"@en;
+    rdfs:domain :Speech;
+    rdfs:range xsd:string .
+
+:speaker a owl:DatatypeProperty;
+    rdfs:label "speaker"@en;
+    rdfs:comment "Orador de la intervención"@es;
+    rdfs:comment "Speaker of the speech"@en;
+    rdfs:domain :Speech;
+    rdfs:range xsd:string .
+
+:text rdfs:domain :Speech .
+
+:diff a owl:DatatypeProperty;
+    rdfs:label "diff"@en;
+    rdfs:comment "Diferencia de la intervención"@es;
+    rdfs:comment "Difference of the speech"@en;
+    rdfs:domain :Speech;
+    rdfs:range xsd:string .
+
+:startTime a owl:DatatypeProperty;
+    rdfs:label "startTime"@en;
+    rdfs:comment "Tiempo de inicio de la intervención"@es;
+    rdfs:comment "Start time of the speech"@en;
+    rdfs:domain :Speech;
+    rdfs:range xsd:string .
+
+:startYouTube a owl:DatatypeProperty;
+    rdfs:label "startYouTube"@en;
+    rdfs:comment "Tiempo de inicio de la intervención en YouTube"@es;
+    rdfs:comment "Start time of the speech in YouTube"@en;
+    rdfs:domain :Speech;
+    rdfs:range xsd:string .
+
+:endYouTube a owl:DatatypeProperty;
+    rdfs:label "endYouTube"@en;
+    rdfs:comment "Tiempo de fin de la intervención en YouTube"@es;
+    rdfs:comment "End time of the speech in YouTube"@en;
+    rdfs:domain :Speech;
+    rdfs:range xsd:string .
+
+# FacebookPost
+:FacebookPost a owl:Class;
+    rdfs:label "FacebookPost"@en;
+    rdfs:comment "Post de Facebook"@es;
+    rdfs:comment "Facebook post"@en;
+    rdfs:subClassOf owl:Thing .
+
+# Properties with FacebookPost domain
+:date rdfs:domain :FacebookPost .
+
+:link a owl:DatatypeProperty;
+    rdfs:label "link"@en;
+    rdfs:comment "Enlace del post"@es;
+    rdfs:comment "Link of the post"@en;
+    rdfs:domain :FacebookPost;
+    rdfs:range xsd:string .
+
+:message a owl:DatatypeProperty;
+    rdfs:label "message"@en;
+    rdfs:comment "Mensaje del post"@es;
+    rdfs:comment "Message of the post"@en;
+    rdfs:domain :FacebookPost;
+    rdfs:range xsd:string .
+
+:postUrl a owl:DatatypeProperty;
+    rdfs:label "postUrl"@en;
+    rdfs:comment "URL del post"@es;
+    rdfs:comment "Post URL"@en;
+    rdfs:domain :FacebookPost;
+    rdfs:range xsd:string .
+
+:score a owl:DatatypeProperty;
+    rdfs:label "score"@en;
+    rdfs:comment "Puntaje del post"@es;
+    rdfs:comment "Post score"@en;
+    rdfs:domain :FacebookPost;
+    rdfs:range xsd:integer .
+
+:updated a owl:DatatypeProperty;
+    rdfs:label "updated"@en;
+    rdfs:comment "Fecha de actualización del post"@es;
+    rdfs:comment "Post update date"@en;
+    rdfs:domain :FacebookPost;
+    rdfs:range xsd:date .
+
+:subscriberCount a owl:DatatypeProperty;
+    rdfs:label "subscriberCount"@en;
+    rdfs:comment "Cantidad de suscriptores"@es;
+    rdfs:comment "Subscriber count"@en;
+    rdfs:domain :FacebookPost;
+    rdfs:range xsd:integer .
+
+:videoLengthMs a owl:DatatypeProperty;
+    rdfs:label "videoLengthMs"@en;
+    rdfs:comment "Duración del video del post"@es;
+    rdfs:comment "Post video length"@en;
+    rdfs:domain :FacebookPost;
+    rdfs:range xsd:integer .
+
+:caption a owl:DatatypeProperty;
+    rdfs:label "caption"@en;
+    rdfs:comment "Subtitulado del video del post"@es;
+    rdfs:comment "Post video caption"@en;
+    rdfs:domain :FacebookPost;
+    rdfs:range xsd:string .
+
+:title a owl:DatatypeProperty;
+    rdfs:label "title"@en;
+    rdfs:comment "Título del video del post"@es;
+    rdfs:comment "Post video title"@en;
+    rdfs:domain :FacebookPost;
+    rdfs:range xsd:string .
+
+:description rdfs:domain :FacebookPost .
+
+:liveVideoStatus a owl:DatatypeProperty;
+    rdfs:label "liveVideoStatus"@en;
+    rdfs:comment "Estado del video en vivo del post"@es;
+    rdfs:comment "Post live video status"@en;
+    rdfs:domain :FacebookPost;
+    rdfs:range xsd:string .
+
+# Video
+:Video a owl:Class;
+    rdfs:label "Video"@en;
+    rdfs:comment "Video"@es;
+    rdfs:comment "Video"@en;
+    rdfs:subClassOf owl:Thing .
+
+# Properties with Video domain
+:videoName a owl:DatatypeProperty;
+    rdfs:label "videoName"@en;
+    rdfs:comment "Nombre del video"@es;
+    rdfs:comment "Video name"@en;
+    rdfs:domain :Video;
+    rdfs:range xsd:string .
+
+:commission a owl:DatatypeProperty;
+    rdfs:label "commission"@en;
+    rdfs:comment "Comisión del video"@es;
+    rdfs:comment "Video commission"@en;
+    rdfs:domain :Video;
+    rdfs:range xsd:string .
+
+:duration a owl:DatatypeProperty;
+    rdfs:label "duration"@en;
+    rdfs:comment "Duración del video"@es;
+    rdfs:comment "Video duration"@en;
+    rdfs:domain :Video;
+    rdfs:range xsd:string .
+
+# Party
+:Party a owl:Class;
+    rdfs:label "Party"@en;
+    rdfs:comment "Partido político"@es;
+    rdfs:comment "Political party"@en;
+    rdfs:subClassOf owl:Thing .
+
+# Properties with Party domain
+:name a rdfs:domain :Party .
+
+# Candidate
+:Candidate a owl:Class;
+    rdfs:label "Candidate"@en;
+    rdfs:comment "Candidato"@es;
+    rdfs:comment "Candidate"@en;
+    rdfs:subClassOf owl:Thing .
+
+# Properties with Candidate domain
+:inVoteName rdfs:domain :Candidate .
+
+:name rdfs:domain :Candidate .
+
+:age rdfs:domain :Candidate .
+
+:c rdfs:domain :Candidate .
+
+:charge rdfs:domain :Candidate .
+
+:orden rdfs:domain :Candidate .
+
+:photo rdfs:domain :Candidate .
+
+:photoId rdfs:domain :Candidate .
+
+:zone rdfs:domain :Candidate .
+
+:occupation rdfs:domain :Candidate .
+
+dc:description rdfs:domain :Candidate .
+
+:elections rdfs:domain :Candidate .
+
+:patrimony rdfs:domain :Candidate .
+
+:web rdfs:domain :Candidate .
+
+:alternative rdfs:domain :Candidate .
+
+# VoteResult
+:VoteResult a owl:Class;
+    rdfs:label "VoteResult"@en;
+    rdfs:comment "Resultado de votación"@es;
+    rdfs:comment "Vote result"@en;
+    rdfs:subClassOf owl:Thing .
+
+# Properties with VoteResult domain
+:name a rdfs:domain :VoteResult .
+
+# TwitterAccount
+:TwitterAccount a owl:Class;
+    rdfs:label "TwitterAccount"@en;
+    rdfs:comment "Cuenta de Twitter"@es;
+    rdfs:comment "Twitter account"@en;
+    rdfs:subClassOf owl:Thing .
+
+# Properties with TwitterAccount domain
+:id rdfs:domain :TwitterAccount .
+
+:name rdfs:domain :TwitterAccount .
+
+:url a owl:DatatypeProperty;
+    rdfs:label "url"@en;
+    rdfs:comment "URL de la cuenta"@es;
+    rdfs:comment "Account URL"@en;
+    rdfs:domain :TwitterAccount;
+    rdfs:range xsd:string .
+
+:description rdfs:domain :TwitterAccount .
+
+:verified a owl:DatatypeProperty;
+    rdfs:label "verified"@en;
+    rdfs:comment "¿Está verificada la cuenta?"@es;
+    rdfs:comment "Is the account verified?"@en;
+    rdfs:domain :TwitterAccount;
+    rdfs:range xsd:boolean .
+
+:location a owl:DatatypeProperty;
+    rdfs:label "location"@en;
+    rdfs:comment "Ubicación de la cuenta de Twitter"@es;
+    rdfs:comment "Twitter account location"@en;
+    rdfs:domain :TwitterAccount;
+    rdfs:range xsd:string .
+
+:createdAt rdfs:domain :TwitterAccount .
+
+:protected a owl:DatatypeProperty;
+    rdfs:label "protected"@en;
+    rdfs:comment "¿Está protegida la cuenta de Twitter?"@es;
+    rdfs:comment "Is the Twitter account protected?"@en;
+    rdfs:domain :TwitterAccount;
+    rdfs:range xsd:boolean .
+
+:screenName a owl:DatatypeProperty;
+    rdfs:label "screenName"@en;
+    rdfs:comment "Nombre de usuario de la cuenta de Twitter"@es;
+    rdfs:comment "Twitter account screen name"@en;
+    rdfs:domain :TwitterAccount;
+    rdfs:range xsd:string .
+
+:followersCount a owl:DatatypeProperty;
+
+:friendsCount a owl:DatatypeProperty;
+    rdfs:label "friendsCount"@en;
+    rdfs:comment "Cantidad de amigos de la cuenta de Twitter"@es;
+    rdfs:comment "Twitter account friends count"@en;
+    rdfs:domain :TwitterAccount;
+    rdfs:range xsd:integer .
+
+:profileImageUrlHttps a owl:DatatypeProperty;
+    rdfs:label "profileImageUrlHttps"@en;
+    rdfs:comment "URL de la imagen de perfil de la cuenta de Twitter"@es;
+    rdfs:comment "Twitter account profile image URL"@en;
+    rdfs:domain :TwitterAccount;
+    rdfs:range xsd:string .
+
+:listedCount a owl:DatatypeProperty;
+    rdfs:label "listedCount"@en;
+    rdfs:comment "Cantidad de listas de la cuenta de Twitter"@es;
+    rdfs:comment "Twitter account listed count"@en;
+    rdfs:domain :TwitterAccount;
+    rdfs:range xsd:integer .
+
+:favouritesCount a owl:DatatypeProperty;
+    rdfs:label "favouritesCount"@en;
+    rdfs:comment "Cantidad de favoritos de la cuenta de Twitter"@es;
+    rdfs:comment "Twitter account favourites count"@en;
+    rdfs:domain :TwitterAccount;
+    rdfs:range xsd:integer .
+
+:statusesCount a owl:DatatypeProperty;
+    rdfs:label "statusesCount"@en;
+    rdfs:comment "Cantidad de estados de la cuenta de Twitter"@es;
+    rdfs:comment "Twitter account statuses count"@en;
+    rdfs:domain :TwitterAccount;
+    rdfs:range xsd:integer .
+
+:profileBannerUrl a owl:DatatypeProperty;
+    rdfs:label "profileBannerUrl"@en;
+    rdfs:comment "URL del banner de la cuenta de Twitter"@es;
+    rdfs:comment "Twitter account banner URL"@en;
+    rdfs:domain :TwitterAccount;
+    rdfs:range xsd:string .
+
+:defaultProfile a owl:DatatypeProperty;
+    rdfs:label "defaultProfile"@en;
+    rdfs:comment "¿Es el perfil por defecto de la cuenta de Twitter?"@es;
+    rdfs:comment "Is the Twitter account default profile?"@en;
+    rdfs:domain :TwitterAccount;
+    rdfs:range xsd:boolean .
+
+:defaultProfileImage a owl:DatatypeProperty;
+    rdfs:label "defaultProfileImage"@en;
+    rdfs:comment "¿Es la imagen de perfil por defecto de la cuenta de Twitter?"@es;
+    rdfs:comment "Is the Twitter account default profile image?"@en;
+    rdfs:domain :TwitterAccount;
+    rdfs:range xsd:boolean .
+
+# TypeContent
+:TypeContent a owl:Class;
+    rdfs:label "TypeContent"@en;
+    rdfs:comment "Tipo de contenido"@es;
+    rdfs:comment "Type of content"@en;
+    rdfs:subClassOf owl:Thing .
+
+# Properties with TypeContent domain
+:name a rdfs:domain :TypeContent .
+
+# FacebookAccount
+:FacebookAccount a owl:Class;
+    rdfs:label "FacebookAccount"@en;
+    rdfs:comment "Cuenta de Facebook"@es;
+    rdfs:comment "Facebook account"@en;
+    rdfs:subClassOf owl:Thing .
+
+# Properties with FacebookAccount domain
+:handle a owl:DatatypeProperty;
+    rdfs:label "handle"@en;
+    rdfs:comment "Nombre de usuario de la cuenta"@es;
+    rdfs:comment "Account handle"@en;
+    rdfs:domain :FacebookAccount;
+    rdfs:range xsd:string .
+
+:id rdfs:domain :FacebookAccount .
+
+:name rdfs:domain :FacebookAccount .
+
+:url rdfs:domain :FacebookAccount .
+
+:verified rdfs:domain :FacebookAccount .
+
+:platformId a owl:DatatypeProperty;
+    rdfs:label "platformId"@en;
+    rdfs:comment "Identificador de la plataforma de la cuenta de Facebook"@es;
+    rdfs:comment "Facebook account platform identifier"@en;
+    rdfs:domain :FacebookAccount;
+    rdfs:range xsd:string .
+
+:subscriberCount rdfs:domain :FacebookAccount .
+
+:platform a owl:DatatypeProperty;
+    rdfs:label "platform"@en;
+    rdfs:comment "Plataforma de la cuenta de Facebook"@es;
+    rdfs:comment "Facebook account platform"@en;
+    rdfs:domain :FacebookAccount;
+    rdfs:range xsd:string .
+
+:profileImage a owl:DatatypeProperty;
+    rdfs:label "profileImage"@en;
+    rdfs:comment "Imagen de perfil de la cuenta de Facebook"@es;
+    rdfs:comment "Facebook account profile image"@en;
+    rdfs:domain :FacebookAccount;
+    rdfs:range xsd:string .
+
+:pageCreatedDate a owl:DatatypeProperty;
+    rdfs:label "pageCreatedDate"@en;
+    rdfs:comment "Fecha de creación de la página de la cuenta de Facebook"@es;
+    rdfs:comment "Facebook account page created date"@en;
+    rdfs:domain :FacebookAccount;
+    rdfs:range xsd:date .
+
+:pageDescription a owl:DatatypeProperty;
+    rdfs:label "pageDescription"@en;
+    rdfs:comment "Descripción de la página de la cuenta de Facebook"@es;
+    rdfs:comment "Facebook account page description"@en;
+    rdfs:domain :FacebookAccount;
+    rdfs:range xsd:string .
+
+:pageAdminTopCountry a owl:DatatypeProperty;
+    rdfs:label "pageAdminTopCountry"@en;
+    rdfs:comment "País principal de la página de la cuenta de Facebook"@es;
+    rdfs:comment "Facebook account page main country"@en;
+    rdfs:domain :FacebookAccount;
+    rdfs:range xsd:string .
+
+:accountType a owl:DatatypeProperty;
+    rdfs:label "accountType"@en;
+    rdfs:comment "Tipo de cuenta de Facebook"@es;
+    rdfs:comment "Facebook account type"@en;
+    rdfs:domain :FacebookAccount;
+    rdfs:range xsd:string .
+
+# Intervention
+:Intervention a owl:Class;
+    rdfs:label "Intervention"@en;
+    rdfs:comment "Intervención"@es;
+    rdfs:comment "Intervention"@en;
+    rdfs:subClassOf owl:Thing .
+
+# Properties with Intervention domain
+:session a owl:DatatypeProperty;
+    rdfs:label "session"@en;
+    rdfs:comment "Sesión de la intervención"@es;
+    rdfs:comment "Session of the intervention"@en;
+    rdfs:domain :Intervention;
+    rdfs:range xsd:string .
+
+:bench a owl:DatatypeProperty;
+    rdfs:label "bench"@en;
+    rdfs:comment "Bancada de la intervención"@es;
+    rdfs:comment "Bench of the intervention"@en;
+    rdfs:domain :Intervention;
+    rdfs:range xsd:string .
+
+:speaker a owl:DatatypeProperty;
+    rdfs:label "speaker"@en;
+    rdfs:comment "Orador de la intervención"@es;
+    rdfs:comment "Speaker of the intervention"@en;
+    rdfs:domain :Intervention;
+    rdfs:range xsd:string .
+
+:text rdfs:domain :Intervention .
+
+:diff rdfs:domain :Intervention .
+
+:startTime rdfs:domain :Intervention .
+
+:startYouTube rdfs:domain :Intervention .
+
+:endYouTube rdfs:domain :Intervention .
+
+# District
+:District a owl:Class;
+    rdfs:label "District"@en;
+    rdfs:comment "Distrito"@es;
+    rdfs:comment "District"@en;
+    rdfs:subClassOf owl:Thing .
+
+# Properties with District domain
+:name a rdfs:domain :District .
+
+# PlenaryMaterial
+:PlenaryMaterial a owl:Class;
+    rdfs:label "PlenaryMaterial"@en;
+    rdfs:comment "Material de plenario"@es;
+    rdfs:comment "Plenary material"@en;
+    rdfs:subClassOf owl:Thing .
+
+# Properties with PlenaryMaterial domain
+:numId a owl:DatatypeProperty;
+    rdfs:label "numId"@en;
+    rdfs:comment "Identificador numérico del material de plenario"@es;
+    rdfs:comment "Plenary material numeric identifier"@en;
+    rdfs:domain :PlenaryMaterial;
+    rdfs:range xsd:integer .
+
+:table a owl:DatatypeProperty;
+    rdfs:label "table"@en;
+    rdfs:comment "Mesa del material de plenario"@es;
+    rdfs:comment "Plenary material table"@en;
+    rdfs:domain :PlenaryMaterial;
+    rdfs:range xsd:string .
+
+:materialKeywords a owl:DatatypeProperty;
+    rdfs:label "materialKeywords"@en;
+    rdfs:comment "Palabras clave del material de plenario"@es;
+    rdfs:comment "Plenary material keywords"@en;
+    rdfs:domain :PlenaryMaterial;
+    rdfs:range xsd:string .
+
+:indexVote a owl:DatatypeProperty;
+    rdfs:label "indexVote"@en;
+    rdfs:comment "Índice de votación del material de plenario"@es;
+    rdfs:comment "Plenary material vote index"@en;
+    rdfs:domain :PlenaryMaterial;
+    rdfs:range xsd:string .
+
+:votacionId a owl:DatatypeProperty;
+    rdfs:label "votacionId"@en;
+    rdfs:comment "Identificador de votación del material de plenario"@es;
+    rdfs:comment "Plenary material votation identifier"@en;
+    rdfs:domain :PlenaryMaterial;
+    rdfs:range xsd:string .
+
+:totalYes a owl:DatatypeProperty;
+    rdfs:label "totalYes"@en;
+    rdfs:comment "Total de votos afirmativos del material de plenario"@es;
+    rdfs:comment "Plenary material total affirmative votes"@en;
+    rdfs:domain :PlenaryMaterial;
+    rdfs:range xsd:integer .
+
+:totalNo a owl:DatatypeProperty;
+    rdfs:label "totalNo"@en;
+    rdfs:comment "Total de votos negativos del material de plenario"@es;
+    rdfs:comment "Plenary material total negative votes"@en;
+    rdfs:domain :PlenaryMaterial;
+    rdfs:range xsd:integer .
+
+:totalAbstention rdfs:domain :PlenaryMaterial .
+
+:totalDispensed a owl:DatatypeProperty;
+    rdfs:label "totalDispensed"@en;
+    rdfs:comment "Total de votos dispensados del material de plenario"@es;
+    rdfs:comment "Plenary material total dispensed votes"@en;
+    rdfs:domain :PlenaryMaterial;
+    rdfs:range xsd:integer .
+
+:textDate a owl:DatatypeProperty;
+    rdfs:label "textDate"@en;
+    rdfs:comment "Fecha del texto del material de plenario"@es;
+    rdfs:comment "Plenary material text date"@en;
+    rdfs:domain :PlenaryMaterial;
+    rdfs:range xsd:date .
+
+:date rdfs:domain :PlenaryMaterial .
+
+# TODO
+:day a owl:DatatypeProperty;
+    rdfs:label "day"@en;
+    rdfs:comment "Día del material de plenario"@es;
+    rdfs:comment "Plenary material day"@en;
+    rdfs:domain :PlenaryMaterial;
+    rdfs:range xsd:string .
+
+:month a owl:DatatypeProperty;
+    rdfs:label "month"@en;
+    rdfs:comment "Mes del material de plenario"@es;
+    rdfs:comment "Plenary material month"@en;
+    rdfs:domain :PlenaryMaterial;
+    rdfs:range xsd:string .
+
+:year a owl:DatatypeProperty;
+    rdfs:label "year"@en;
+    rdfs:comment "Año del material de plenario"@es;
+    rdfs:comment "Plenary material year"@en;
+    rdfs:domain :PlenaryMaterial;
+    rdfs:range xsd:string .
+
+:url rdfs:domain :PlenaryMaterial .
+
+:sessionKeywords a owl:DatatypeProperty;
+    rdfs:label "sessionKeywords"@en;
+    rdfs:comment "Palabras clave de la sesión del material de plenario"@es;
+    rdfs:comment "Plenary material session keywords"@en;
+    rdfs:domain :PlenaryMaterial;
+    rdfs:range xsd:string .
+
+:sessionAccount a owl:DatatypeProperty;
+    rdfs:label "sessionAccount"@en;
+    rdfs:comment "Cuenta de la sesión del material de plenario"@es;
+    rdfs:comment "Plenary material session account"@en;
+    rdfs:domain :PlenaryMaterial;
+    rdfs:range xsd:string .
+
+:detailTable a owl:DatatypeProperty;
+    rdfs:label "detailTable"@en;
+    rdfs:comment "Detalle de la mesa del material de plenario"@es;
+    rdfs:comment "Plenary material table detail"@en;
+    rdfs:domain :PlenaryMaterial;
+    rdfs:range xsd:string .
+
+:material a owl:DatatypeProperty;
+    rdfs:label "material"@en;
+    rdfs:comment "Material del material de plenario"@es;
+    rdfs:comment "Plenary material material"@en;
+    rdfs:domain :PlenaryMaterial;
+    rdfs:range xsd:string .
+
+# PoliticalGroupConvention
+:PoliticalGroupConvention a owl:Class;
+    rdfs:label "PoliticalGroupConvention"@en;
+    rdfs:comment "Convención de grupo político"@es;
+    rdfs:comment "Political group convention"@en;
+    rdfs:subClassOf owl:Thing .
+
+# Properties with PoliticalGroupConvention domain
+:name a rdfs:domain :PoliticalGroupConvention .
+
+# InstagramPost
+:InstagramPost a owl:Class;
+    rdfs:label "InstagramPost"@en;
+    rdfs:comment "Post de Instagram"@es;
+    rdfs:comment "Instagram post"@en;
+    rdfs:subClassOf owl:Thing .
+
+# Properties with InstagramPost domain
+:id rdfs:domain :InstagramPost .
+
+:date rdfs:domain :InstagramPost .
+
+:postUrl rdfs:domain :InstagramPost .
+
+:score rdfs:domain :InstagramPost .
+
+:updated rdfs:domain :InstagramPost .
+
+:description rdfs:domain :InstagramPost .
+
+:imageText a owl:DatatypeProperty;
+    rdfs:label "imageText"@en;
+    rdfs:comment "Texto de la imagen del post de Instagram"@es;
+    rdfs:comment "Instagram post image text"@en;
+    rdfs:domain :InstagramPost;
+    rdfs:range xsd:string .
+
+:subscriberCount rdfs:domain :InstagramPost .
+
+:legacyId a owl:DatatypeProperty;
+    rdfs:label "legacyId"@en;
+    rdfs:comment "Identificador legado del post de Instagram"@es;
+    rdfs:comment "Instagram post legacy identifier"@en;
+    rdfs:domain :InstagramPost;
+    rdfs:range xsd:string .
+
+:likeAndViewCountsDisabled a owl:DatatypeProperty;
+    rdfs:label "likeAndViewCountsDisabled"@en;
+    rdfs:comment "¿Están deshabilitados los conteos de likes y vistas del post de Instagram?"@es;
+    rdfs:comment "Are Instagram post like and view counts disabled?"@en;
+    rdfs:domain :InstagramPost;
+    rdfs:range xsd:boolean .
+
+# Commission
+:Commission a owl:Class;
+    rdfs:label "Commission"@en;
+    rdfs:comment "Comisión"@es;
+    rdfs:comment "Commission"@en;
+    rdfs:subClassOf owl:Thing .
+
+# Properties with Commission domain
+:id rdfs:domain :Commission .
+
+# Gender
+foaf:gender rdfs:range xsd:string .
+
+# InstagramAccount
+:InstagramAccount a owl:Class;
+    rdfs:label "InstagramAccount"@en;
+    rdfs:comment "Cuenta de Instagram"@es;
+    rdfs:comment "Instagram account"@en;
+    rdfs:subClassOf owl:Thing .
+
+# Properties with InstagramAccount domain
+:handle rdfs:domain :InstagramAccount .
+
+:id rdfs:domain :InstagramAccount .
+
+:name rdfs:domain :InstagramAccount .
+
+:url rdfs:domain :InstagramAccount .
+
+:verified rdfs:domain :InstagramAccount .
+
+:platformId rdfs:domain :InstagramAccount .
+
+:subscriberCount rdfs:domain :InstagramAccount .
+
+:platform rdfs:domain :InstagramAccount .
+
+:profileImage rdfs:domain :InstagramAccount .
+
+# Language
+:Language a owl:Class;
+    rdfs:label "Language"@en;
+    rdfs:comment "Idioma"@es;
+    rdfs:comment "Language"@en;
+    rdfs:subClassOf owl:Thing .
+
+# Properties with Language domain
+:code a owl:DatatypeProperty;
+    rdfs:label "code"@en;
+    rdfs:comment "Código del idioma"@es;
+    rdfs:comment "Language code"@en;
+    rdfs:domain :Language;
+    rdfs:range xsd:string .
+
+:name rdfs:domain :Language .
+
+
+
+
+
+
+
+
