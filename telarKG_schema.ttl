@@ -6,6 +6,10 @@
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
 @prefix foaf: <http://xmlns.com/foaf/0.1/>.
 @prefix dc: <http://purl.org/dc/elements/1.1/>.
+@prefix dcmi: <http://purl.org/dc/dcmitype/>.
+@prefix sioc: <http://rdfs.org/sioc/ns#>.
+@prefix schema: <http://schema.org/>.
+@prefix gndo: <http://d-nb.info/standards/elementset/gnd#>.
 
 : a owl:Ontology;
     rdfs:label "TelarKG"@en;
@@ -36,11 +40,8 @@
     rdfs:domain :ConventionMember;
     rdfs:range xsd:integer .
 
-:c a owl:DatatypeProperty;
-    rdfs:label "code"@en;
-    rdfs:comment "Código del miembro de la convención"@es;
-    rdfs:comment "Code of the convention member"@en;
-    rdfs:domain :ConventionMember;
+# id
+dcmi:identifier rdfs:domain :ConventionMember;
     rdfs:range xsd:string .
 
 :charge a owl:DatatypeProperty;
@@ -50,14 +51,13 @@
     rdfs:domain :ConventionMember;
     rdfs:range xsd:string .
 
-# TODO
-:name a owl:DatatypeProperty;
-    rdfs:label "name"@en;
-    owl:sameAs foaf:name;
-    rdfs:domain :ConventionMember;
+foaf:name rdfs:domain :ConventionMember;
     rdfs:range xsd:string .
 
-:orden a owl:DatatypeProperty;
+# TODO meaning of order?
+# map to :orden
+:orderId a owl:DatatypeProperty;
+    rdfs:subPropertyOf dcmi:identifier;
     rdfs:label "orden"@en;
     rdfs:comment "Orden del miembro de la convención"@es;
     rdfs:comment "Order of the convention member"@en;
@@ -71,32 +71,34 @@
     rdfs:domain :ConventionMember;
     rdfs:range xsd:boolean .
 
-# TODO
-:web a owl:DatatypeProperty;
-    owl:sameAs foaf:homepage;
-    rdfs:label "web"@en;
-    rdfs:comment "Sitio web del miembro de la convención"@es;
-    rdfs:comment "Website of the convention member"@en;
+:photoId a owl:DatatypeProperty;
+    rdfs:subPropertyOf dcmi:identifier;
+    rdfs:label "photoId"@en;
+    rdfs:comment "Identificador de la fotografía del miembro de la convención"@es;
+    rdfs:comment "Photo identifier of the convention member"@en;
     rdfs:domain :ConventionMember;
     rdfs:range xsd:string .
 
-:zone a owl:DatatypeProperty;
+# map to :web
+schema:url rdfs:domain :ConventionMember;
+    rdfs:range xsd:string .
+
+:zoneId a owl:DatatypeProperty;
+    rdfs:subPropertyOf dcmi:identifier;
     rdfs:label "zone"@en;
     rdfs:comment "Código de zona del miembro de la convención"@es;
     rdfs:comment "Zone code of the convention member"@en;
     rdfs:domain :ConventionMember;
     rdfs:range xsd:string .
-
-:occupation a owl:DatatypeProperty;
-    rdfs:label "occupation"@en;
-    rdfs:comment "Ocupación del miembro de la convención"@es;
-    rdfs:comment "Occupation of the convention member"@en;
-    rdfs:domain :ConventionMember;
+# TODO Check if is applicable
+# map to :occupation
+gndo:professionOrOccupationAsLiteral rdfs:domain :ConventionMember;
     rdfs:range xsd:string .
 
 dc:description rdfs:domain :ConventionMember ;
     rdfs:range xsd:string .
 
+# TODO meaning of elections?
 :elections a owl:DatatypeProperty;
     rdfs:label "elections"@en;
     rdfs:comment "Datos electorales del miembro de la convención"@es;
@@ -104,21 +106,23 @@ dc:description rdfs:domain :ConventionMember ;
     rdfs:domain :ConventionMember;
     rdfs:range xsd:string .
 
-:patrimony a owl:DatatypeProperty;
+:patrimonyId a owl:DatatypeProperty;
+    rdfs:subPropertyOf dcmi:identifier;
     rdfs:label "patrimony"@en;
     rdfs:comment "Código de patrimonio del miembro de la convención"@es;
     rdf:comment "Patrimony code of the convention member"@en;
     rdfs:domain :ConventionMember;
     rdfs:range xsd:string .
 
-# TODO
+# TODO meaning of pact2409?
 :pact2409 a owl:DatatypeProperty;
     rdfs:label "pact"@en;
-    rdfs:comment "Propiedad que relaciona un miembro de la convención y el partido político que representa"@es;
-    rdfs:comment "Property that relates a convention member and the political party they represent"@en;
+    rdfs:comment "Nombre del pacto al que representa el miembro de la convención"@es;
+    rdfs:comment "Name of the pact the convention member represents"@en;
     rdfs:domain :ConventionMember;
-    rdfs:range :Pact .
+    rdfs:range xsd:string .
 
+# TODO meaning of nominateNames?
 :nominateNames a owl:DatatypeProperty;
     rdfs:label "nominateNames"@en;
     rdfs:comment "Nombre en la nómina del miembro de la convención"@es;
@@ -126,6 +130,7 @@ dc:description rdfs:domain :ConventionMember ;
     rdfs:domain :ConventionMember;
     rdfs:range xsd:string .
 
+# TODO meaning?
 :nombreEnPartido a owl:DatatypeProperty;
     rdfs:label "nombreEnPartido"@en;
     rdfs:comment "Nombre en el partido del miembro de la convención"@es;
@@ -133,18 +138,19 @@ dc:description rdfs:domain :ConventionMember ;
     rdfs:domain :ConventionMember;
     rdfs:range xsd:string .
 
-:wikidata a owl:DatatypeProperty;
+:wikidata_url a owl:DatatypeProperty;
+    rdfs:subPropertyOf schema:url;
     rdfs:label "wikidata"@en;
     rdfs:comment "Identificador de Wikidata del miembro de la convención"@es;
     rdfs:comment "Wikidata identifier of the convention member"@en;
     rdfs:domain :ConventionMember;
     rdfs:range xsd:string .
 
-# TODO
+# TODO meaning of alternative?
 :alternative a owl:DatatypeProperty;
     rdfs:label "alternative"@en;
-    rdfs:comment "Nombre alternativo del miembro de la convención"@es;
-    rdfs:comment "Alternative name of the convention member"@en;
+    # rdfs:comment "Nombre alternativo del miembro de la convención"@es;
+    # rdfs:comment "Alternative name of the convention member"@en;
     rdfs:domain :ConventionMember;
     rdfs:range xsd:string .
 
@@ -158,34 +164,29 @@ dc:description rdfs:domain :ConventionMember ;
 foaf:gender rdfs:domain :ConventionMember ;
     rdfs:range :Gender .
 
-:part a owl:ObjectProperty;
-    rdfs:label "part"@en;
-    rdfs:comment "Partido político del miembro de la convención"@es;
-    rdfs:comment "Political party of the convention member"@en;
-    rdfs:domain :ConventionMember;
-    rdfs:range :Party .
+# map to :part
+dbo:party rdfs:domain :ConventionMember;
+    rdfs:range dbo:PoliticalParty .
 
 :candidateOf a owl:ObjectProperty;
+    rdfs:subPropertyOf dbo:party;
     rdfs:label "candidateOf"@en;
     rdfs:comment "Partido político del miembro de la convención durante elecciones"@es;
     rdfs:comment "Political party of the convention member during elections"@en;
     rdfs:domain :ConventionMember;
-    rdfs:range :Candidate .
+    rdfs:range dbo:PoliticalParty .
 
-:hasAccount a owl:ObjectProperty;
-    rdfs:label "hasAccount"@en;
-    rdfs:comment "Propiedad que relaciona una persona con una cuenta de red social"@es;
-    rdfs:comment "Property that relates a person with a social media account"@en;
-    rdfs:domain :Person;
-    rdfs:range foaf:OnlineAccount .
+# map to hasAccount
+# foaf:holdsAccount rdfs:range foaf:OnlineAccount .
 
-:district a owl:DatatypeProperty;
+:district a owl:ObjectProperty;
     rdfs:label "district"@en;
     rdfs:comment "Distrito del miembro de la convención"@es;
     rdfs:comment "District of the convention member"@en;
     rdfs:domain :ConventionMember;
     rdfs:range :District .
 
+# TODO what is the difference from pac42409?
 :politicalGroupConvention a owl:ObjectProperty;
     rdfs:label "politicalGroupConvention"@en;
     rdfs:comment "Grupo político del miembro de la convención"@es;
@@ -252,8 +253,7 @@ foaf:gender rdfs:domain :ConventionMember ;
     rdfs:subClassOf owl:Thing .
 
 # Properties with Pact domain
-:name rdfs:domain :Pact;
-    rdfs:range xsd:string .
+# :name map to rdfs:label
 
 # Commission Material
 # TODO
@@ -264,8 +264,7 @@ foaf:gender rdfs:domain :ConventionMember ;
     rdfs:subClassOf owl:Thing .
 
 # Properties with CommissionMaterial domain
-:name rdfs:domain :CommissionMaterial;
-    rdfs:range xsd:string .
+# :name map to rdfs:label
 
 :material a owl:DatatypeProperty;
     rdfs:label "material"@en;
@@ -307,8 +306,8 @@ foaf:gender rdfs:domain :ConventionMember ;
     rdfs:domain :CommissionMaterial;
     rdfs:range xsd:integer .
 
-#Negative
-:totalAgainst a owl:DatatypeProperty;
+# map to :totalAgainst
+:totalNegative a owl:DatatypeProperty;
     rdfs:label "totalAgainst"@en;
     rdfs:comment "Total de votos en contra de un material de una comisión"@es;
     rdfs:comment "Total negative votes of a commission material"@en;
@@ -412,12 +411,7 @@ foaf:gender rdfs:domain :ConventionMember ;
     rdfs:subClassOf owl:Thing .
 
 # Properties with Tweet domain
-:id a owl:DatatypeProperty;
-    rdfs:label "id"@en;
-    rdfs:comment "Identificador"@es;
-    rdfs:comment "Identifier"@en;
-    rdfs:domain :Tweet;
-    rdfs:range xsd:string .
+dcmi:identifier rdfs:domain :Tweet .
 
 :text rdfs:domain :Tweet .
 
@@ -765,7 +759,7 @@ dc:description rdfs:domain :Candidate .
     rdfs:subClassOf owl:Thing .
 
 # Properties with TwitterAccount domain
-:id rdfs:domain :TwitterAccount .
+dcmi:identifier rdfs:domain :TwitterAccount .
 
 :name rdfs:domain :TwitterAccount .
 
@@ -891,7 +885,7 @@ dc:description rdfs:domain :Candidate .
     rdfs:domain :FacebookAccount;
     rdfs:range xsd:string .
 
-:id rdfs:domain :FacebookAccount .
+dcmi:identifier rdfs:domain :FacebookAccount .
 
 :name rdfs:domain :FacebookAccount .
 
@@ -1144,7 +1138,7 @@ dc:description rdfs:domain :Candidate .
     rdfs:subClassOf owl:Thing .
 
 # Properties with InstagramPost domain
-:id rdfs:domain :InstagramPost .
+dcmi:identifier rdfs:domain :InstagramPost .
 
 :date rdfs:domain :InstagramPost .
 
@@ -1187,7 +1181,7 @@ dc:description rdfs:domain :Candidate .
     rdfs:subClassOf owl:Thing .
 
 # Properties with Commission domain
-:id rdfs:domain :Commission .
+dcmi:identifier rdfs:domain :Commission .
 
 # Gender
 foaf:gender rdfs:range xsd:string .
@@ -1202,7 +1196,7 @@ foaf:gender rdfs:range xsd:string .
 # Properties with InstagramAccount domain
 :handle rdfs:domain :InstagramAccount .
 
-:id rdfs:domain :InstagramAccount .
+dcmi:identifier rdfs:domain :InstagramAccount .
 
 :name rdfs:domain :InstagramAccount .
 

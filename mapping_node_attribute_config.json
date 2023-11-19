@@ -1,0 +1,244 @@
+{
+  "ConventionMember": {
+    "self" : ":ConventionMember",
+    "inVoteName": ":inVoteName",
+    "age" : "La edad del miembro de la convención es",
+    "c": "Su código c es",
+    "charge": "El código de cargos que tiene es:",
+    "name": "Tiene de nombre",
+    "orden": "Su número de orden es ",
+    "photo": "¿Hay fotografìa?",
+    "photoId": "Su código de fotografía es",
+    "web": "Su página web personal es",
+    "zone": "Su código de zona es",
+    "occupation": "Tiene de ocupación",
+    "description": "Algunos datos relevantes acerca de este miembro de la convención son:",
+    "elections": "Sus datos electorales son",
+    "patrimony": "Su número de patrimonio es",
+    "pact2409": "Representa al partido político",
+    "nominateNames": "Su nombre en la nómina es",
+    "nombreEnPartido": "Su nombre en el partido es",
+    "wikidata": "Su dirección web en wikidata es",
+    "alternative": "Alternativa de",
+    "resignation": "¿Resignación?"
+},
+  "Chat": {
+    "date": "La fecha del chat es",
+    "session": "La sesión del chat es",
+    "text": "El texto del chat es:",
+    "user": "El usuario del chat es",
+    "timeYoutube": "El tiempo en youtube del chat es"
+  },
+  "Pact": {
+    "name": "El nombre del partido político es"
+  },
+  "CommissionMaterial": {
+    "name": "El nombre de la comisión es",
+    "material": "El material de la comisión es",
+    "nameCc": "El nombre del coordinador de la comisión es",
+    "type": "El tipo de la comisión es",
+    "date":"La fecha de la comisión es",
+    "idVotation": "El id de la votación de la comisión es",
+    "totalAffirmative": "El total de votos afirmativos de la comisión es",
+    "totalAgainst": "El total de votos en contra de la comisión es",
+    "totalAbstention": "El total de votos de abstención de la comisión es"
+  },
+  "TrendingTopic": {
+    "createdAt": "La fecha de creación del trending topic es"
+  },
+  "Topic": {
+    "name": "El nombre del topic es",
+    "query": "La query del topic es"
+  },
+  "Transcription": {
+    "date": "La fecha de la transcripción es",
+    "session":"La sesión de la transcripción es",
+    "text": "El texto de la transcripción es:"
+  },
+  "Tweet": {
+    "id": "El id del tweet es",
+    "text": "El texto del tweet es:",
+    "createdAt": "La fecha de creación del tweet es",
+    "isQuoteStatus": "¿Es un tweet de cita?",
+    "truncated": "¿Está truncado?",
+    "favorited": "¿Está favorito?",
+    "retweetCount": "El número de retweets es",
+    "favoriteCount": "El número de favoritos es",
+    "retweeted": "¿Está retweeteado?",
+    "inReplyToStatusIdStr": "El id del tweet al que responde es",
+    "inReplyToUserId": "El id del usuario al que responde es",
+    "inReplyToUserIdStr": "El id del usuario al que responde es",
+    "inReplyToStatusId": "El id del tweet al que responde es",
+    "inReplyToScreenName": "El nombre del usuario al que responde es",
+    "possiblySensitive": "¿Es posiblemente sensible?",
+    "quoteCount": "El número de citas es",
+    "replyCount": "El número de respuestas es",
+    "filterLevel": "El nivel de filtro es"
+  },
+  "Speech": {
+    "bench": "La bancada del discurso es",
+    "session":"La sesión del discurso es",
+    "speaker": "El orador del discurso es",
+    "text":"El texto del discurso es:",
+    "diff": "La diferencia del discurso es",
+    "startTime": "El tiempo de inicio del discurso es",
+    "startYoutube": "El tiempo de inicio en youtube del discurso es",
+    "endYoutube": "El tiempo de fin en youtube del discurso es"
+  },
+  "FacebookPost": {
+    "date": "La fecha del post en Facebook es",
+    "link": "El link del post en Facebook es",
+    "message": "El mensaje del post en Facebook es:",
+    "postUrl": "La url del post en Facebook es",
+    "score": "El score del post en Facebook es",
+    "updated": "La fecha de actualización del post en Facebook es",
+    "subscriberCount": "El número de subscriptores del post en Facebook es",
+    "videoLengthMs": "La duración del video del post en Facebook es",
+    "caption": "La leyenda del video del post en Facebook es",
+    "title": "El título del video del post en Facebook es",
+    "description": "La descripción del post en Facebook es",
+    "liveVideoStatus": "El estado del video en vivo del post en Facebook es"
+  },
+  "Video": {
+    "videoName": "El nombre del video es",
+    "commission": "La comisión del video es",
+    "duration": "La duración del video es"
+  },
+  "Party": {
+    "name": "El nombre del partido político es"
+  },
+  "Candidate": {
+    "inVoteName":"El nombre completo del candidato es",
+    "name":"El nombre del candidato es",
+    "age": "La edad del candidato es",
+    "c":"Su código c es",
+    "charge":"El código de cargos que tiene es:",
+    "orden":"Su número de orden es ",
+    "photo":"¿Hay fotografìa?",
+    "photoId":"Su código de fotografía es",
+    "zone":"Su código de zona es",
+    "occupation":"Tiene de ocupación",
+    "description":"Algunos datos relevantes acerca de este candidato son:",
+    "elections":"Sus datos electorales son",
+    "patrimony":"Su número de patrimonio es",
+    "web":"Su página web personal es",
+    "alternative":"Alternativa de"
+  },
+  "VoteResult": {
+    "name": "El resultado de la votación es"
+  },
+  "TwitterAccount": {
+    "id":"El id de la cuenta de twitter es",
+    "name": "El nombre de la cuenta de twitter es",
+    "url": "La url de la cuenta de twitter es",
+    "description": "La descripción de la cuenta de twitter es:",
+    "verified": "¿Está verificada la cuenta de twitter?",
+    "location": "La ubicación de la cuenta de twitter es",
+    "createdAt": "La fecha de creación de la cuenta de twitter es",
+    "protected": "¿Está protegida la cuenta de twitter?",
+    "screenName": "El nombre de la cuenta de twitter es",
+    "followersCount": "El número de seguidores de la cuenta de twitter es",
+    "friendsCount": "El número de amigos de la cuenta de twitter es",
+    "profileImageUrlHttps": "La url de la imagen de perfil de la cuenta de twitter es",
+    "listedCount": "El número de listas de la cuenta de twitter es",
+    "favouritesCount": "El número de favoritos de la cuenta de twitter es",
+    "statusesCount": "El número de estados de la cuenta de twitter es",
+    "profileBannerUrl": "La url del banner de la cuenta de twitter es",
+    "defaultProfile": "¿Es el perfil por defecto?",
+    "defaultProfileImage": "¿Es la imagen de perfil por defecto?"
+  },
+  "TypeContent": {
+    "name": "El nombre del tipo de contenido es"
+  },
+  "FacebookAccount": {
+    "handle": "El handle de la cuenta de facebook es",
+    "id": "El id de la cuenta de facebook es",
+    "name": "El nombre de la cuenta de facebook es",
+    "url": "La url de la cuenta de facebook es",
+    "verified": "¿Está verificada la cuenta de facebook?",
+    "platformId": "El id de la plataforma de la cuenta de facebook es",
+    "subscriberCount": "El número de subscriptores de la cuenta de facebook es",
+    "platform": "La plataforma de la cuenta de facebook es",
+    "profileImage": "La imagen de perfil de la cuenta de facebook es",
+    "pageCreatedDate": "La fecha de creación de la página de la cuenta de facebook es",
+    "pageDescription": "La descripción de la página de la cuenta de facebook es:",
+    "pageAdminTopCountry": "El código de país de la página de la cuenta de facebook es",
+    "accountType": "El tipo de cuenta de la cuenta de facebook es"
+  },
+  "Intervention": {
+    "session": "La sesión de la intervención es",
+    "bench": "La bancada de la intervención es",
+    "speaker": "El orador de la intervención es",
+    "text": "El texto de la intervención es:",
+    "diff":"La diferencia del discurso es",
+    "startTime": "El tiempo de inicio de la intervención es",
+    "startYoutube": "El tiempo de inicio en youtube de la intervención es",
+    "endYoutube": "El tiempo de fin en youtube de la intervención es"
+  },
+  "District": {
+    "name": "El código del distrito es"
+  },
+  "PlenaryMaterial": {
+    "numId": "El id numérico del material plenario es",
+    "table": "La tema del material plenario es:",
+    "materialKeywords": "Las palabras clave del material plenario son:",
+    "indexVote": "El índice de votación del material plenario es",
+    "votacionId": "El id de votación del material plenario es",
+    "totalYes": "El total de síes del material plenario es",
+    "totalNo": "El total de noes del material plenario es",
+    "totalAbstentions": "El total de abstenciones del material plenario es",
+    "totalDispensed": "El total de dispensados del material plenario es",
+    "textDate": "La fecha de texto del material plenario es",
+    "date": "La fecha del material plenario es:",
+    "day": "El día del material plenario es",
+    "month": "El mes del material plenario es",
+    "year": "El año del material plenario es",
+    "url": "La url del material plenario es",
+    "sessionKeywords": "Las palabras clave de la sesión del material plenario son",
+    "sessionAccount": "La cuenta de sesión del material plenario es:",
+    "detailTable": "El detalle del tema del material plenario es",
+    "material": "El material del plenario es:"
+  },
+  "PoliticalGroupConvention": {
+    "name": "El nombre de la convención del grupo político es"
+  },
+  "InstagramPost": {
+    "id": "El id del post de instagram es",
+    "date": "La fecha del post de instagram es",
+    "postUrl": "La url del post de instagram es",
+    "score": "El score del post de instagram es",
+    "updated": "La fecha de actualización del post de instagram es",
+    "description": "La descripción del post de instagram es:",
+    "imageText": "El texto de la imagen del post de instagram es:",
+    "subscriberCount": "El número de subscriptores del post de instagram es",
+    "legacyId": "El id legado del post de instagram es",
+    "likeAndViewCountsDisabled": "¿Están deshabilitados los conteos de likes y vistas del post de instagram?"
+  },
+  "Commission": {
+    "id": "El id de la comisión es"
+  },
+  "PlenarySession": {
+    "id": "El id de la sesión plenaria es"
+  },
+  "CommissionSession": {
+    "id": "El id de la sesión de comisión es"
+  },
+  "Gender": {
+    "name": "El nombre del género es"
+  },
+  "InstagramAccount": {
+    "handle": "El handle de la cuenta de instagram es",
+    "id": "El id de la cuenta de instagram es",
+    "name": "El nombre de la cuenta de instagram es",
+    "url": "La url de la cuenta de instagram es",
+    "verified": "¿Está verificada la cuenta de instagram?",
+    "platformId": "El id de la plataforma de la cuenta de instagram es",
+    "subscriberCount": "El número de subscriptores de la cuenta de instagram es",
+    "platform": "La plataforma de la cuenta de instagram es",
+    "profileImage": "La imagen de perfil de la cuenta de instagram es"
+  },
+  "Language": {
+    "code": "El código del lenguaje es",
+    "name": "El nombre del lenguaje es"
+  }
+}
