@@ -10,12 +10,13 @@
 @prefix sioc: <http://rdfs.org/sioc/ns#>.
 @prefix schema: <http://schema.org/>.
 @prefix gndo: <http://d-nb.info/standards/elementset/gnd#>.
+@prefix dbo: <http://dbpedia.org/ontology/>.
 
 : a owl:Ontology;
     rdfs:label "TelarKG"@en;
     rdfs:comment "TelarKG is a Knowledge Graph collecting together data about the Chilean Constitutional Convention, whose objective was to draft a new constitution for Chile. Information is provided regarding the convention members (class ConventionMember), including their party, pact, gender, etc. The votes of each convention member during the process are stored as edges targetting the plenary material (PlenaryMaterial) or commission material (CommissionMaterial) being voted upon. Videos (Video) of all plenary and commission sessions are described, along with interventions by members, automated transcripts and chat comments. Each convention member (class ConventionMember) contains one or more social media accounts (TwitterAccount, FacebookAccount and InstagramAccount), which in turn are related to social media posts by them, along with other related posts. Next is shown the schema of the graph, further indicating the number of instances for each class."@en;
     owl:versionInfo "1.0"@en;
-    dc:creator "IMFD"@es;
+    dc:creator "IMFD"@es .
 
 # Classes
 # Convention member
@@ -343,7 +344,7 @@ dbo:party rdfs:domain :ConventionMember;
     rdfs:domain :CommissionMaterial;
     rdfs:range :VoteResult .
 
-###########################################################################
+# ###########################################################################
 
 # Trending Topic
 # TODO
@@ -693,53 +694,55 @@ dcmi:identifier rdfs:domain :Tweet .
     rdfs:domain :Video;
     rdfs:range xsd:string .
 
-# Party
-:Party a owl:Class;
-    rdfs:label "Party"@en;
+# map to Party
+dbo:PoliticalParty a owl:Class;
+    rdfs:label "PoliticalParty"@en;
     rdfs:comment "Partido político"@es;
-    rdfs:comment "Political party"@en;
-    rdfs:subClassOf owl:Thing .
+    rdfs:comment "Political party"@en .
 
 # Properties with Party domain
-:name a rdfs:domain :Party .
+# TODO map to rdfs:label
+# :name a rdfs:domain :Party .
 
+# TODO equivalent Class to ConventionMember? or superClass?
 # Candidate
 :Candidate a owl:Class;
-    rdfs:label "Candidate"@en;
-    rdfs:comment "Candidato"@es;
-    rdfs:comment "Candidate"@en;
-    rdfs:subClassOf owl:Thing .
+    owl:equivalentClass :ConventionMember .
+#     rdfs:label "Candidate"@en;
+#     rdfs:comment "Candidato"@es;
+#     rdfs:comment "Candidate"@en;
+#     rdfs:subClassOf owl:Thing .
 
-# Properties with Candidate domain
-:inVoteName rdfs:domain :Candidate .
+# # Properties with Candidate domain
+# :inVoteName rdfs:domain :Candidate .
 
-:name rdfs:domain :Candidate .
+# :name rdfs:domain :Candidate .
 
-:age rdfs:domain :Candidate .
+# :age rdfs:domain :Candidate .
 
-:c rdfs:domain :Candidate .
+# :c rdfs:domain :Candidate .
 
-:charge rdfs:domain :Candidate .
+# :charge rdfs:domain :Candidate .
 
-:orden rdfs:domain :Candidate .
+# :orden rdfs:domain :Candidate .
 
-:photo rdfs:domain :Candidate .
+# :photo rdfs:domain :Candidate .
 
-:photoId rdfs:domain :Candidate .
+# :photoId rdfs:domain :Candidate .
 
-:zone rdfs:domain :Candidate .
+# :zone rdfs:domain :Candidate .
 
-:occupation rdfs:domain :Candidate .
+# :occupation rdfs:domain :Candidate .
 
-dc:description rdfs:domain :Candidate .
+# dc:description rdfs:domain :Candidate .
 
-:elections rdfs:domain :Candidate .
+# :elections rdfs:domain :Candidate .
 
-:patrimony rdfs:domain :Candidate .
+# :patrimony rdfs:domain :Candidate .
 
-:web rdfs:domain :Candidate .
+# :web rdfs:domain :Candidate .
 
-:alternative rdfs:domain :Candidate .
+# :alternative rdfs:domain :Candidate .
 
 # VoteResult
 :VoteResult a owl:Class;
@@ -749,7 +752,8 @@ dc:description rdfs:domain :Candidate .
     rdfs:subClassOf owl:Thing .
 
 # Properties with VoteResult domain
-:name a rdfs:domain :VoteResult .
+# TODO map to rdfs:label
+# :name a rdfs:domain :VoteResult .
 
 # TwitterAccount
 :TwitterAccount a owl:Class;
@@ -803,6 +807,11 @@ dcmi:identifier rdfs:domain :TwitterAccount .
     rdfs:range xsd:string .
 
 :followersCount a owl:DatatypeProperty;
+    rdfs:label "followersCount"@en;
+    rdfs:comment "Cantidad de seguidores de la cuenta de Twitter"@es;
+    rdfs:comment "Twitter account followers count"@en;
+    rdfs:domain :TwitterAccount;
+    rdfs:range xsd:integer .
 
 :friendsCount a owl:DatatypeProperty;
     rdfs:label "friendsCount"@en;
@@ -868,7 +877,8 @@ dcmi:identifier rdfs:domain :TwitterAccount .
     rdfs:subClassOf owl:Thing .
 
 # Properties with TypeContent domain
-:name a rdfs:domain :TypeContent .
+# TODO map to rdfs:label
+# :name a rdfs:domain :TypeContent .
 
 # FacebookAccount
 :FacebookAccount a owl:Class;
@@ -991,7 +1001,8 @@ dcmi:identifier rdfs:domain :FacebookAccount .
     rdfs:subClassOf owl:Thing .
 
 # Properties with District domain
-:name a rdfs:domain :District .
+# TODO map to rdfs:label
+# :name a rdfs:domain :District .
 
 # PlenaryMaterial
 :PlenaryMaterial a owl:Class;
@@ -1128,7 +1139,8 @@ dcmi:identifier rdfs:domain :FacebookAccount .
     rdfs:subClassOf owl:Thing .
 
 # Properties with PoliticalGroupConvention domain
-:name a rdfs:domain :PoliticalGroupConvention .
+# TODO map to rdfs:label
+# :name a rdfs:domain :PoliticalGroupConvention .
 
 # InstagramPost
 :InstagramPost a owl:Class;
@@ -1227,7 +1239,8 @@ dcmi:identifier rdfs:domain :InstagramAccount .
     rdfs:domain :Language;
     rdfs:range xsd:string .
 
-:name rdfs:domain :Language .
+# TODO map to rdfs:label
+# :name rdfs:domain :Language .
 
 
 
