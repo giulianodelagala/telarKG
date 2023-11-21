@@ -295,24 +295,22 @@ dc:date a owl:DatatypeProperty;
 
 :totalAffirmative a owl:DatatypeProperty;
     rdfs:label "totalAffirmative"@en;
-    rdfs:comment "Total de votos afirmativos de un material de una comisión"@es;
-    rdfs:comment "Total affirmative votes of a commission material"@en;
+    rdfs:comment "Total de votos afirmativos de una votación"@es;
+    rdfs:comment "Total affirmative votes of a votation"@en;
     # rdfs:domain :CommissionMaterial;
     rdfs:range xsd:integer .
 
 # map to :totalAgainst
 :totalNegative a owl:DatatypeProperty;
     rdfs:label "totalAgainst"@en;
-    rdfs:comment "Total de votos en contra de un material de una comisión"@es;
-    rdfs:comment "Total negative votes of a commission material"@en;
-    # rdfs:domain :CommissionMaterial;
+    rdfs:comment "Total de votos negativos de una votación"@es;
+    rdfs:comment "Total negative votes of a votation"@en;
     rdfs:range xsd:integer .
 
 :totalAbstention a owl:DatatypeProperty;
     rdfs:label "totalAbstention"@en;
-    rdfs:comment "Total de abstenciones"@es;
-    rdfs:comment "Total abstentions"@en;
-    # rdfs:domain :CommissionMaterial;
+    rdfs:comment "Total de votos en abstención de una votación"@es;
+    rdfs:comment "Total abstention votes of a votation"@en;
     rdfs:range xsd:integer .
 
 :commission a owl:ObjectProperty;
@@ -390,8 +388,8 @@ dc:created a owl:DatatypeProperty;
 :text a owl:DatatypeProperty;
     rdfs:subPropertyOf rdf:value;
     rdfs:label "text"@en;
-    rdfs:comment "Texto de la transcripción"@es;
-    rdfs:comment "Text of the transcription"@en;
+    rdfs:comment "Texto de un documento"@es;
+    rdfs:comment "Document text"@en;
     rdfs:range xsd:string .
 
 # TODO subclassOf?
@@ -405,10 +403,10 @@ dc:created a owl:DatatypeProperty;
 # Properties with Tweet domain
 dcmi:identifier rdfs:domain :Tweet .
 
-# TODO map to :text
+# map to :text
 sioc:content a rdf:Property .
 
-# TODO map to dc:created
+# map to dc:created
 # :createdAt rdfs:domain :Tweet .
 
 :isQuoteStatus a owl:DatatypeProperty;
@@ -891,9 +889,9 @@ dcmi:identifier rdfs:domain :TwitterAccount .
 
 dcmi:identifier rdfs:domain :FacebookAccount .
 
-:name rdfs:domain :FacebookAccount .
+# :name rdfs:domain :FacebookAccount .
 
-:url rdfs:domain :FacebookAccount .
+# :url rdfs:domain :FacebookAccount .
 
 :verified rdfs:domain :FacebookAccount .
 
@@ -977,7 +975,7 @@ dcmi:identifier rdfs:domain :FacebookAccount .
     rdfs:domain :Intervention;
     rdfs:range xsd:string .
 
-# TODO map to :text
+# map to :text
 # :text rdfs:domain :Intervention .
 
 :diff rdfs:domain :Intervention .
@@ -1001,28 +999,29 @@ dcmi:identifier rdfs:domain :FacebookAccount .
 # :name a rdfs:domain :District .
 
 # PlenaryMaterial
-:PlenaryMaterial a owl:Class;
-    rdfs:label "PlenaryMaterial"@en;
-    rdfs:comment "Material de plenario"@es;
-    rdfs:comment "Plenary material"@en;
+:PlenarySession a owl:Class;
+    rdfs:label "PlenarySession"@en;
+    rdfs:comment "Sesión del Pleno"@es;
+    rdfs:comment "Plenary Session"@en;
     rdfs:subClassOf owl:Thing .
 
 # Properties with PlenaryMaterial domain
-# TODO map to dcmi:identifier
-# :numId a owl:DatatypeProperty;
+# :numId map to dcmi:identifier
 
-:table a owl:DatatypeProperty;
+# map to :table
+:agenda a owl:DatatypeProperty;
     rdfs:label "table"@en;
-    rdfs:comment "Mesa del material de plenario"@es;
-    rdfs:comment "Plenary material table"@en;
+    rdfs:comment "Orden del día del Pleno"@es;
+    rdfs:comment "Plenary agenda"@en;
     rdfs:domain :PlenaryMaterial;
     rdfs:range xsd:string .
 
-:materialKeywords a owl:DatatypeProperty;
+# map to :hasKeywords
+# :materialKeywords a owl:DatatypeProperty;
+:hasKeywords a owl:DatatypeProperty;
     rdfs:label "materialKeywords"@en;
     rdfs:comment "Palabras clave del material de plenario"@es;
     rdfs:comment "Plenary material keywords"@en;
-    rdfs:domain :PlenaryMaterial;
     rdfs:range xsd:string .
 
 :indexVote a owl:DatatypeProperty;
@@ -1030,7 +1029,7 @@ dcmi:identifier rdfs:domain :FacebookAccount .
     rdfs:comment "Índice de votación del material de plenario"@es;
     rdfs:comment "Plenary material vote index"@en;
     rdfs:domain :PlenaryMaterial;
-    rdfs:range xsd:string .
+    rdfs:range xsd:integer .
 
 :votacionId a owl:DatatypeProperty;
     rdfs:label "votacionId"@en;
@@ -1042,55 +1041,50 @@ dcmi:identifier rdfs:domain :FacebookAccount .
 # TODO map to :totalAffirmative
 # :totalYes a owl:DatatypeProperty;
 
-:totalNo a owl:DatatypeProperty;
-    rdfs:label "totalNo"@en;
-    rdfs:comment "Total de votos negativos del material de plenario"@es;
-    rdfs:comment "Plenary material total negative votes"@en;
-    rdfs:domain :PlenaryMaterial;
-    rdfs:range xsd:integer .
+# :totalNegative a owl:DatatypeProperty;
 
-:totalAbstention rdfs:domain :PlenaryMaterial .
+# :totalAbstention rdfs:domain :PlenaryMaterial .
 
 :totalDispensed a owl:DatatypeProperty;
     rdfs:label "totalDispensed"@en;
-    rdfs:comment "Total de votos dispensados del material de plenario"@es;
-    rdfs:comment "Plenary material total dispensed votes"@en;
-    rdfs:domain :PlenaryMaterial;
+    rdfs:comment "Total de votos dispensados de una votación"@es;
+    rdfs:comment "Total dispensed votes of a votation"@en;
     rdfs:range xsd:integer .
 
-:textDate a owl:DatatypeProperty;
-    rdfs:label "textDate"@en;
-    rdfs:comment "Fecha del texto del material de plenario"@es;
-    rdfs:comment "Plenary material text date"@en;
-    rdfs:domain :PlenaryMaterial;
-    rdfs:range xsd:date .
+# TODO discard?
+# :textDate a owl:DatatypeProperty;
+#     rdfs:label "textDate"@en;
+#     rdfs:comment "Fecha del texto del material de plenario"@es;
+#     rdfs:comment "Plenary material text date"@en;
+#     rdfs:domain :PlenaryMaterial;
+#     rdfs:range xsd:date .
 
 # TODO map to dc:date
 # :date rdfs:domain :PlenaryMaterial .
 
-# TODO
-:day a owl:DatatypeProperty;
-    rdfs:label "day"@en;
-    rdfs:comment "Día del material de plenario"@es;
-    rdfs:comment "Plenary material day"@en;
-    rdfs:domain :PlenaryMaterial;
-    rdfs:range xsd:string .
+# TODO discard this data?
+# :day a owl:DatatypeProperty;
+#     rdfs:label "day"@en;
+#     rdfs:comment "Día del material de plenario"@es;
+#     rdfs:comment "Plenary material day"@en;
+#     rdfs:domain :PlenaryMaterial;
+#     rdfs:range xsd:string .
 
-:month a owl:DatatypeProperty;
-    rdfs:label "month"@en;
-    rdfs:comment "Mes del material de plenario"@es;
-    rdfs:comment "Plenary material month"@en;
-    rdfs:domain :PlenaryMaterial;
-    rdfs:range xsd:string .
+# :month a owl:DatatypeProperty;
+#     rdfs:label "month"@en;
+#     rdfs:comment "Mes del material de plenario"@es;
+#     rdfs:comment "Plenary material month"@en;
+#     rdfs:domain :PlenaryMaterial;
+#     rdfs:range xsd:string .
 
-:year a owl:DatatypeProperty;
-    rdfs:label "year"@en;
-    rdfs:comment "Año del material de plenario"@es;
-    rdfs:comment "Plenary material year"@en;
-    rdfs:domain :PlenaryMaterial;
-    rdfs:range xsd:string .
+# :year a owl:DatatypeProperty;
+#     rdfs:label "year"@en;
+#     rdfs:comment "Año del material de plenario"@es;
+#     rdfs:comment "Plenary material year"@en;
+#     rdfs:domain :PlenaryMaterial;
+#     rdfs:range xsd:string .
 
-:url rdfs:domain :PlenaryMaterial .
+# :url rdfs:domain :PlenaryMaterial .
 
 :sessionKeywords a owl:DatatypeProperty;
     rdfs:label "sessionKeywords"@en;
@@ -1099,25 +1093,27 @@ dcmi:identifier rdfs:domain :FacebookAccount .
     rdfs:domain :PlenaryMaterial;
     rdfs:range xsd:string .
 
-:sessionAccount a owl:DatatypeProperty;
+# map to :sessionAccount
+:sessionReport a owl:DatatypeProperty;
     rdfs:label "sessionAccount"@en;
-    rdfs:comment "Cuenta de la sesión del material de plenario"@es;
-    rdfs:comment "Plenary material session account"@en;
+    rdfs:comment "Resumen de la sesión del material de plenario"@es;
+    rdfs:comment "Plenary material session report"@en;
     rdfs:domain :PlenaryMaterial;
     rdfs:range xsd:string .
 
-:detailTable a owl:DatatypeProperty;
+# map to :detailTable
+:sessionRemarks a owl:DatatypeProperty;
     rdfs:label "detailTable"@en;
-    rdfs:comment "Detalle de la mesa del material de plenario"@es;
-    rdfs:comment "Plenary material table detail"@en;
+    rdfs:comment "Observaciones del material de plenario"@es;
+    rdfs:comment "Plenary material remarks"@en;
     rdfs:domain :PlenaryMaterial;
     rdfs:range xsd:string .
 
-:material a owl:DatatypeProperty;
+:materialText a owl:DatatypeProperty;
+    rdf:subPropertyOf :text;
     rdfs:label "material"@en;
-    rdfs:comment "Material del material de plenario"@es;
-    rdfs:comment "Plenary material material"@en;
-    rdfs:domain :PlenaryMaterial;
+    rdfs:comment "Texto material desarrollado"@es;
+    rdfs:comment "Developed material text"@en;
     rdfs:range xsd:string .
 
 # PoliticalGroupConvention
@@ -1231,26 +1227,6 @@ dcmi:identifier rdfs:domain :InstagramAccount .
 
 # TODO map to rdfs:label
 # :name rdfs:domain :Language .
-
-<https://telarkg.imfd.cl/entity/pers_arancibia_jorge> a :ConventionMember .
-<https://telarkg.imfd.cl/entity/pers_arancibia_jorge> :age 81 .
-<https://telarkg.imfd.cl/entity/pers_arancibia_jorge> dcmi:identifier "I"^^xsd:string .
-<https://telarkg.imfd.cl/entity/pers_arancibia_jorge> :charge "2002-2010;S;8803"^^xsd:string .
-<https://telarkg.imfd.cl/entity/pers_arancibia_jorge> foaf:name "Jorge Arancibia"^^xsd:string .
-<https://telarkg.imfd.cl/entity/pers_arancibia_jorge> :orderId 150 .
-<https://telarkg.imfd.cl/entity/pers_arancibia_jorge> :photo true .
-<https://telarkg.imfd.cl/entity/pers_arancibia_jorge> :photoId "23280"^^xsd:string .
-<https://telarkg.imfd.cl/entity/pers_arancibia_jorge> schema:url "arancibiaconstituyente.cl"^^xsd:string .
-<https://telarkg.imfd.cl/entity/pers_arancibia_jorge> :zoneId "60070"^^xsd:string .
-<https://telarkg.imfd.cl/entity/pers_arancibia_jorge> :inVoteName "JORGE PATRICIO ARANCIBIA REYES"^^xsd:string .
-<https://telarkg.imfd.cl/entity/pers_arancibia_jorge> gndo:professionOrOccupationAsLiteral "Ingeniero en Armas"^^xsd:string .
-<https://telarkg.imfd.cl/entity/pers_arancibia_jorge> dc:description "Ex senador, fue comandante en jefe de la Armada y embajador en Turquía."^^xsd:string .
-<https://telarkg.imfd.cl/entity/pers_arancibia_jorge> :elections "2001;S;8803;38,35;G"^^xsd:string .
-<https://telarkg.imfd.cl/entity/pers_arancibia_jorge> :patrimonyId "5785930"^^xsd:string .
-<https://telarkg.imfd.cl/entity/pers_arancibia_jorge> :pact2409 "Vamos por Chile"^^xsd:string .
-<https://telarkg.imfd.cl/entity/pers_arancibia_jorge> :nominateNames "arancibia_jorge"^^xsd:string .
-<https://telarkg.imfd.cl/entity/pers_arancibia_jorge> :nombreEnPartido "arancibia, jorge"^^xsd:string .
-<https://telarkg.imfd.cl/entity/pers_arancibia_jorge> :wikidata_url "http://www.wikidata.org/entity/Q5934487"^^xsd:string .
 
 
 
