@@ -1232,25 +1232,25 @@ dcmi:identifier rdfs:domain :InstagramAccount .
 # TODO map to rdfs:label
 # :name rdfs:domain :Language .
 
-<:/entity/pers_arancibia_jorge> a :ConventionMember .
-<:/entity/pers_arancibia_jorge> :age 81 .
-<:/entity/pers_arancibia_jorge> dcmi:identifier "I"^^xsd:string .
-<:/entity/pers_arancibia_jorge> :charge "2002-2010;S;8803"^^xsd:string .
-<:/entity/pers_arancibia_jorge> foaf:name "Jorge Arancibia"^^xsd:string .
-<:/entity/pers_arancibia_jorge> :orderId 150 .
-<:/entity/pers_arancibia_jorge> :photo true .
-<:/entity/pers_arancibia_jorge> :photoId "23280"^^xsd:string .
-<:/entity/pers_arancibia_jorge> schema:url "arancibiaconstituyente.cl"^^xsd:string .
-<:/entity/pers_arancibia_jorge> :zoneId "60070"^^xsd:string .
-<:/entity/pers_arancibia_jorge> :inVoteName "JORGE PATRICIO ARANCIBIA REYES"^^xsd:string .
-<:/entity/pers_arancibia_jorge> gndo:professionOrOccupationAsLiteral "Ingeniero en Armas"^^xsd:string .
-<:/entity/pers_arancibia_jorge> dc:description "Ex senador, fue comandante en jefe de la Armada y embajador en Turquía."^^xsd:string .
-<:/entity/pers_arancibia_jorge> :elections "2001;S;8803;38,35;G"^^xsd:string .
-<:/entity/pers_arancibia_jorge> :patrimonyId "5785930"^^xsd:string .
-<:/entity/pers_arancibia_jorge> :pact2409 "Vamos por Chile"^^xsd:string .
-<:/entity/pers_arancibia_jorge> :nominateNames "arancibia_jorge"^^xsd:string .
-<:/entity/pers_arancibia_jorge> :nombreEnPartido "arancibia, jorge"^^xsd:string .
-<:/entity/pers_arancibia_jorge> :wikidata_url "http://www.wikidata.org/entity/Q5934487"^^xsd:string .
+<https://telarkg.imfd.cl/entity/pers_arancibia_jorge> a :ConventionMember .
+<https://telarkg.imfd.cl/entity/pers_arancibia_jorge> :age 81 .
+<https://telarkg.imfd.cl/entity/pers_arancibia_jorge> dcmi:identifier "I"^^xsd:string .
+<https://telarkg.imfd.cl/entity/pers_arancibia_jorge> :charge "2002-2010;S;8803"^^xsd:string .
+<https://telarkg.imfd.cl/entity/pers_arancibia_jorge> foaf:name "Jorge Arancibia"^^xsd:string .
+<https://telarkg.imfd.cl/entity/pers_arancibia_jorge> :orderId 150 .
+<https://telarkg.imfd.cl/entity/pers_arancibia_jorge> :photo true .
+<https://telarkg.imfd.cl/entity/pers_arancibia_jorge> :photoId "23280"^^xsd:string .
+<https://telarkg.imfd.cl/entity/pers_arancibia_jorge> schema:url "arancibiaconstituyente.cl"^^xsd:string .
+<https://telarkg.imfd.cl/entity/pers_arancibia_jorge> :zoneId "60070"^^xsd:string .
+<https://telarkg.imfd.cl/entity/pers_arancibia_jorge> :inVoteName "JORGE PATRICIO ARANCIBIA REYES"^^xsd:string .
+<https://telarkg.imfd.cl/entity/pers_arancibia_jorge> gndo:professionOrOccupationAsLiteral "Ingeniero en Armas"^^xsd:string .
+<https://telarkg.imfd.cl/entity/pers_arancibia_jorge> dc:description "Ex senador, fue comandante en jefe de la Armada y embajador en Turquía."^^xsd:string .
+<https://telarkg.imfd.cl/entity/pers_arancibia_jorge> :elections "2001;S;8803;38,35;G"^^xsd:string .
+<https://telarkg.imfd.cl/entity/pers_arancibia_jorge> :patrimonyId "5785930"^^xsd:string .
+<https://telarkg.imfd.cl/entity/pers_arancibia_jorge> :pact2409 "Vamos por Chile"^^xsd:string .
+<https://telarkg.imfd.cl/entity/pers_arancibia_jorge> :nominateNames "arancibia_jorge"^^xsd:string .
+<https://telarkg.imfd.cl/entity/pers_arancibia_jorge> :nombreEnPartido "arancibia, jorge"^^xsd:string .
+<https://telarkg.imfd.cl/entity/pers_arancibia_jorge> :wikidata_url "http://www.wikidata.org/entity/Q5934487"^^xsd:string .
 
 
 
