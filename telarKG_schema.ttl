@@ -192,8 +192,7 @@ foaf:holdsAccount a rdf:Property ;
 :vote a owl:ObjectProperty;
     rdfs:label "vote"@en;
     rdfs:comment "Voto del miembro de la convención"@es;
-    rdfs:comment "Vote of the convention member"@en;
-    rdfs:domain :ConventionMember .
+    rdfs:comment "Vote of the convention member"@en .
 
 #######################################################################################
 # Chat
