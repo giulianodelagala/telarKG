@@ -11,6 +11,7 @@
 @prefix schema: <http://schema.org/>.
 @prefix gndo: <http://d-nb.info/standards/elementset/gnd#>.
 @prefix dbo: <http://dbpedia.org/ontology/>.
+@prefix org: <http://www.w3.org/ns/org#>.
 
 : a owl:Ontology;
     rdfs:label "TelarKG"@en;
@@ -23,15 +24,21 @@
 :ConventionMember a owl:Class;
     rdfs:label "ConventionMember"@en;
     rdfs:comment "A member of a convention"@en;
-    rdfs:subClassOf foaf:Person .
+    rdfs:subClassOf org:Role .
 
 # Properties with ConventionMember domain
+foaf:Person a owl:Class .
+
+org:role a rdf:Property ;
+    rdfs:domain foaf:Person ;
+    rdfs:range :ConventionMember .
+
 :inVoteName a owl:DatatypeProperty;
     rdfs:label "inVoteName"@en;
     rdfs:comment "Nombre completo en padrón electoral"@es;
     rdfs:comment "Full name in electoral roll"@en;
-    rdfs:subClassOf foaf:name;
-    rdfs:domain :ConventionMember;
+    rdfs:subPropertyOf foaf:name;
+    rdfs:domain foaf:Person;
     rdfs:range xsd:string .
 
 :age a owl:DatatypeProperty;
@@ -44,7 +51,8 @@
 dcmi:identifier a rdf:Property ,
     owl:InverseFunctionalProperty .
 
-:charge a owl:DatatypeProperty;
+:chargeId a owl:DatatypeProperty;
+    rdfs:subPropertyOf dcmi:identifier;
     rdfs:label "charge"@en;
     rdfs:comment "Código del cargo del miembro de la convención"@es;
     rdfs:comment "Charge code of the convention member"@en;
@@ -64,7 +72,7 @@ foaf:name a rdf:Property ;
     rdfs:domain :ConventionMember;
     rdfs:range xsd:integer .
 
-:photo a owl:DatatypeProperty;
+:isPhotoAvailable a owl:DatatypeProperty;
     rdfs:label "photo"@en;
     rdfs:comment "¿existe fotografía del miembro de la convención"@es;
     rdfs:comment "Is there a photo of the convention member?"@en;
@@ -81,6 +89,13 @@ foaf:name a rdf:Property ;
 schema:url a rdf:Property ;
     rdfs:range xsd:string .
 
+:homepage a owl:DatatypeProperty;
+    rdfs:subPropertyOf schema:url;
+    rdfs:label "homePage"@en;
+    rdfs:comment "Página web"@es;
+    rdfs:comment "Home page"@en;
+    rdfs:range xsd:string .
+
 :zoneId a owl:DatatypeProperty;
     rdfs:subPropertyOf dcmi:identifier;
     rdfs:label "zone"@en;
@@ -90,8 +105,13 @@ schema:url a rdf:Property ;
 
 # TODO range to Profession
 # map to :occupation
-gndo:professionOrOccupationAsLiteral a rdf:Property ;
+
+:professionOrOccupation a rdf:Property ;
+    rdfs:equivalentClass gndo:professionOrOccupationAsLiteral ;
     rdfs:range xsd:string .
+
+# gndo:professionOrOccupationAsLiteral a rdf:Property ;
+#     rdfs:range xsd:string .
 
 dc:description a rdf:Property ;
     rdfs:range xsd:string .
@@ -99,9 +119,9 @@ dc:description a rdf:Property ;
 # TODO meaning of elections?
 :elections a owl:DatatypeProperty;
     rdfs:label "elections"@en;
-    rdfs:comment "Datos electorales del miembro de la convención"@es;
-    rdfs:comment "Election data of the convention member"@en;
-    rdfs:domain :ConventionMember;
+    rdfs:comment "Datos electorales de la persona"@es;
+    rdfs:comment "Election data of the person"@en;
+    rdfs:domain foaf:Person;
     rdfs:range xsd:string .
 
 :patrimonyId a owl:DatatypeProperty;
@@ -132,10 +152,9 @@ dc:description a rdf:Property ;
     rdfs:label "nombreEnPartido"@en;
     rdfs:comment "Nombre en el partido del miembro de la convención"@es;
     rdfs:comment "Name in the convention member's party"@en;
-    rdfs:domain :ConventionMember;
     rdfs:range xsd:string .
 
-:wikidata_url a owl:DatatypeProperty;
+:wikidataUrl a owl:DatatypeProperty;
     rdfs:subPropertyOf schema:url;
     rdfs:label "wikidata"@en;
     rdfs:comment "Identificador de Wikidata del miembro de la convención"@es;
@@ -143,19 +162,16 @@ dc:description a rdf:Property ;
     rdfs:range xsd:string .
 
 # TODO meaning of alternative?
-:alternative a owl:DatatypeProperty;
+:alternativeTo a owl:DatatypeProperty;
     rdfs:label "alternative"@en;
-    # rdfs:comment "Nombre alternativo del miembro de la convención"@es;
-    # rdfs:comment "Alternative name of the convention member"@en;
-    rdfs:domain :ConventionMember;
     rdfs:range xsd:string .
 
-:resignation a owl:DatatypeProperty;
+:isResignation a owl:DatatypeProperty;
     rdfs:label "resignation"@en;
     rdfs:comment "¿El miembro de la convención resignó?"@es;
     rdfs:comment "Did the convention member resign?"@en;
     rdfs:domain :ConventionMember;
-    rdfs:domain xsd:boolean .
+    rdfs:range xsd:boolean .
 
 foaf:gender a rdf:Property ;
     rdfs:range :Gender .
@@ -179,7 +195,7 @@ foaf:holdsAccount a rdf:Property ;
     rdfs:label "district"@en;
     rdfs:comment "Distrito del miembro de la convención"@es;
     rdfs:comment "District of the convention member"@en;
-    rdfs:range :District .
+    rdfs:range dbo:District .
 
 # TODO what is the difference from pact2409?
 :politicalGroupConvention a owl:ObjectProperty;
@@ -195,45 +211,50 @@ foaf:holdsAccount a rdf:Property ;
     rdfs:comment "Vote of the convention member"@en .
 
 #######################################################################################
-# Chat
-# TODO
-:Chat a owl:Class;
-    rdfs:label "Chat"@en;
-    rdfs:comment "Chat de una sesión de la convención"@es;
-    rdfs:comment "Chat of a convention session"@en;
-    rdfs:subClassOf owl:Thing .
+# PoliticalEvent
+:PoliticalEvent a owl:Class;
+    rdfs:label "PoliticalEvent"@en;
+    rdfs:comment "Evento político"@es;
+    rdfs:comment "Political event"@en;
+    rdfs:subClassOf schema:Event .
 
-# Properties with Chat domain
-# TODO map to :date
+# Chat
+:YouTubeChatPost a owl:Class;
+    rdfs:label "YouTubeChat"@en;
+    rdfs:comment "Post en chat de YouTube"@es;
+    rdfs:comment "YouTube post chat"@en;
+    rdfs:subClassOf :Post .
+
+# Properties with Debate domain
 dc:date a owl:DatatypeProperty;
     rdfs:range xsd:date .
 
-:session a owl:DatatypeProperty;
-    rdfs:label "session"@en;
-    rdfs:comment "Sesión del chat"@es;
-    rdfs:comment "Session of the chat"@en;
-    rdfs:domain :Chat;
+:sessionId a owl:DatatypeProperty;
+    rdfs:subPropertyOf dcmi:identifier;
+    rdfs:label "sessionId"@en;
+    rdfs:comment "Id de la Sesión"@es;
+    rdfs:comment "Session Id"@en;
     rdfs:range xsd:string .
 
-:text a owl:DatatypeProperty;
-    rdfs:label "text"@en;
-    rdfs:comment "Texto del chat"@es;
-    rdfs:comment "Text of the chat"@en;
-    rdfs:domain :Chat;
-    rdfs:range xsd:string .
+# :text a owl:DatatypeProperty;
+#     rdfs:label "text"@en;
+#     rdfs:comment "Texto del post en el chat"@es;
+#     rdfs:comment "Text of the post"@en;
+#     rdfs:domain :YouTubeChatPost;
+#     rdfs:range xsd:string .
 
-:user a owl:DatatypeProperty;
+:userPost a owl:DatatypeProperty;
     rdfs:label "user"@en;
-    rdfs:comment "Usuario del chat"@es;
-    rdfs:comment "User of the chat"@en;
-    rdfs:domain :Chat;
+    rdfs:comment "Usuario del post"@es;
+    rdfs:comment "User of the post"@en;
+    rdfs:domain :YouTubeChatPost;
     rdfs:range xsd:string .
 
-:timeYouTube a owl:DatatypeProperty;
+:timeInYouTube a owl:DatatypeProperty;
     rdfs:label "timeYouTube"@en;
-    rdfs:comment "Tiempo en YouTube del chat"@es;
-    rdfs:comment "YouTube time of the chat"@en;
-    rdfs:domain :Chat;
+    rdfs:comment "Tiempo en YouTube del post"@es;
+    rdfs:comment "YouTube time of the post"@en;
+    rdfs:domain :YouTubeChatPost;
     rdfs:range xsd:string .
 
 # Pact
@@ -242,49 +263,48 @@ dc:date a owl:DatatypeProperty;
     rdfs:label "Pact"@en;
     rdfs:comment "Pacto electoral"@es;
     rdfs:comment "Electoral pact"@en;
-    rdfs:subClassOf dbo:Organisation .
+    rdfs:subClassOf org:Organization .
 
 # Properties with Pact domain
 # :name map to rdfs:label
 
 # Commission Material
-# TODO
 :CommissionMaterial a owl:Class;
     rdfs:label "CommissionMaterial"@en;
     rdfs:comment "Material de una comisión"@es;
     rdfs:comment "Material of a commission"@en;
-    rdfs:subClassOf owl:Thing .
+    rdfs:subClassOf :PoliticalEvent .
 
 # Properties with CommissionMaterial domain
 # :name map to rdfs:label
 
-:material a owl:DatatypeProperty;
+:materialText a owl:DatatypeProperty;
+    rdfs:subPropertyOf :text;
     rdfs:label "material"@en;
-    rdfs:comment "Material de una comisión"@es;
-    rdfs:comment "Material of a commission"@en;
+    rdfs:comment "Texto del material de una comisión"@es;
+    rdfs:comment "Text of the material of a commission"@en;
     rdfs:domain :CommissionMaterial;
     rdfs:range xsd:string .
 
 # TODO refactor to range ConventionMember
-:nameCC a owl:DatatypeProperty;
+# TODO idem nominateNames
+:nameChair a owl:DatatypeProperty;
     rdfs:label "nameCC"@en;
     rdfs:comment "Nombre del coordinador de la comisión"@es;
     rdfs:comment "Name of the commission coordinator"@en;
     rdfs:domain :CommissionMaterial;
     rdfs:range xsd:string .
 
-# TODO
-:type a owl:DatatypeProperty;
+:materialType a owl:DatatypeProperty;
     rdfs:label "type"@en;
     rdfs:comment "Tipo de material de una comisión"@es;
     rdfs:comment "Type of commission material"@en;
     rdfs:range xsd:string .
 
-# TODO map to dc:date
 # :date rdfs:domain :CommissionMaterial;
 #     rdfs:range xsd:date .
 
-:idVotation a owl:DatatypeProperty;
+:votationId a owl:DatatypeProperty;
     rdfs:subPropertyOf dcmi:identifier;
     rdfs:label "idVotation"@en;
     rdfs:comment "Identificador de votación de un material de una comisión"@es;
@@ -296,7 +316,6 @@ dc:date a owl:DatatypeProperty;
     rdfs:label "totalAffirmative"@en;
     rdfs:comment "Total de votos afirmativos de una votación"@es;
     rdfs:comment "Total affirmative votes of a votation"@en;
-    # rdfs:domain :CommissionMaterial;
     rdfs:range xsd:integer .
 
 # map to :totalAgainst
@@ -337,13 +356,11 @@ dc:date a owl:DatatypeProperty;
 # ###########################################################################
 
 # Trending Topic
-# TODO
 :TrendingTopic a owl:Class;
     rdfs:label "TrendingTopic"@en;
     rdfs:comment "Trending topic"@en;
     rdfs:subClassOf :Topic .
 
-# TODO map to :createdAt
 dc:created a owl:DatatypeProperty;
     rdfs:range xsd:date .
 
@@ -355,11 +372,10 @@ dc:created a owl:DatatypeProperty;
     rdfs:subClassOf skos:Concept .
 
 # Properties with Topic domain
-# TODO meaning of query?
-:query a owl:DatatypeProperty;
+:queryTopic a owl:DatatypeProperty;
     rdfs:label "query"@en;
-    rdfs:comment "Consulta del tema"@es;
-    rdfs:comment "Query of the topic"@en;
+    rdfs:comment "Criterio de búsqueda del tema"@es;
+    rdfs:comment "Search query of the topic"@en;
     rdfs:domain :Topic;
     rdfs:range xsd:string .
 
@@ -371,33 +387,64 @@ dc:created a owl:DatatypeProperty;
     rdfs:subClassOf owl:Thing .
 
 # Properties with Transcription domain
-# TODO map to dc:date
 # :date rdfs:domain :Transcription;
 #     rdfs:range xsd:date .
 
-# TODO
-:session a owl:DatatypeProperty;
-    rdfs:label "session"@en;
-    rdfs:comment "Sesión de la transcripción"@es;
-    rdfs:comment "Session of the transcription"@en;
-    rdfs:domain :Transcription;
-    rdfs:range xsd:string .
+# :sessionId a owl:DatatypeProperty;
+#     rdfs:label "session"@en;
+#     rdfs:comment "Sesión"@es;
+#     rdfs:comment "Session"@en;
+#     rdfs:range xsd:string .
 
-# TODO sioc:content for social media posts
-:text a owl:DatatypeProperty;
-    rdfs:subPropertyOf rdf:value;
-    rdfs:label "text"@en;
-    rdfs:comment "Texto de un documento"@es;
-    rdfs:comment "Document text"@en;
-    rdfs:range xsd:string .
+# :text a owl:DatatypeProperty;
+#     rdfs:subPropertyOf rdf:value;
+#     rdfs:label "text"@en;
+#     rdfs:comment "Texto de un documento"@es;
+#     rdfs:comment "Document text"@en;
+#     rdfs:range xsd:string .
 
-# TODO subclassOf?
+# TODO Check equivalent Class
+:Post a owl:Class;
+    rdfs:label "Post"@en;
+    rdfs:comment "Post in a social media community"@en;
+    rdfs:comment "Publicación en una comunidad de redes sociales"@es;
+    owl:equivalentClass sioc:Post .
+
+# schema:url
+# :postUrl a owl:DatatypeProperty;
+#     rdfs:label "postUrl"@en;
+#     rdfs:comment "URL del post"@es;
+#     rdfs:comment "Post URL"@en;
+#     rdfs:domain :Post;
+#     rdfs:range xsd:string .
+
+:score a owl:DatatypeProperty;
+    rdfs:label "score"@en;
+    rdfs:comment "Puntaje del post"@es;
+    rdfs:comment "Post score"@en;
+    rdfs:domain :Post;
+    rdfs:range xsd:integer .
+
+:updated a owl:DatatypeProperty;
+    rdfs:label "updated"@en;
+    rdfs:comment "Fecha de actualización del post"@es;
+    rdfs:comment "Post update date"@en;
+    rdfs:domain :Post;
+    rdfs:range xsd:date .
+
+:subscriberCountPost a owl:DatatypeProperty;
+    rdfs:label "subscriberCountPost"@en;
+    rdfs:comment "Cantidad de suscriptores del post"@es;
+    rdfs:comment "Post subscriber count"@en;
+    rdfs:domain :Post;
+    rdfs:range xsd:integer .
+
 # Tweet
 :Tweet a owl:Class;
     rdfs:label "Tweet"@en;
     rdfs:comment "Tweet"@es;
     rdfs:comment "Tweet"@en;
-    rdfs:subClassOf owl:Thing .
+    rdfs:subClassOf :Post .
 
 # Properties with Tweet domain
 dcmi:identifier rdfs:domain :Tweet .
@@ -486,7 +533,7 @@ sioc:content a rdf:Property .
     rdfs:domain :Tweet;
     rdfs:range xsd:string .
 
-:possiblySensitive a owl:DatatypeProperty;
+:isPossiblySensitive a owl:DatatypeProperty;
     rdfs:label "possiblySensitive"@en;
     rdfs:comment "¿Es posiblemente sensible?"@es;
     rdfs:comment "Is it possibly sensitive?"@en;
@@ -518,9 +565,9 @@ sioc:content a rdf:Property .
 # Speech
 :Speech a owl:Class;
     rdfs:label "Speech"@en;
-    rdfs:comment "Intervención"@es;
+    rdfs:comment "Discurso"@es;
     rdfs:comment "Speech"@en;
-    rdfs:subClassOf owl:Thing .
+    rdfs:subClassOf :PoliticalEvent .
 
 # Properties with Speech domain
 :bench a owl:DatatypeProperty;
@@ -530,13 +577,14 @@ sioc:content a rdf:Property .
     rdfs:domain :Speech;
     rdfs:range xsd:string .
 
-:session a owl:DatatypeProperty;
-    rdfs:label "session"@en;
-    rdfs:comment "Sesión de la intervención"@es;
-    rdfs:comment "Session of the speech"@en;
-    rdfs:domain :Speech;
-    rdfs:range xsd:string .
+# :sessionId a owl:DatatypeProperty;
+#     rdfs:label "session"@en;
+#     rdfs:comment "Sesión de la intervención"@es;
+#     rdfs:comment "Session of the speech"@en;
+#     rdfs:domain :Speech;
+#     rdfs:range xsd:string .
 
+# TODO idem nominateNames
 :speaker a owl:DatatypeProperty;
     rdfs:label "speaker"@en;
     rdfs:comment "Orador de la intervención"@es;
@@ -544,8 +592,7 @@ sioc:content a rdf:Property .
     rdfs:domain :Speech;
     rdfs:range xsd:string .
 
-# TODO map to sioc:content
-# :text rdfs:domain :Speech .
+# :text
 
 # TODO meaning?
 :diff a owl:DatatypeProperty;
@@ -581,53 +628,27 @@ sioc:content a rdf:Property .
     rdfs:label "FacebookPost"@en;
     rdfs:comment "Post de Facebook"@es;
     rdfs:comment "Facebook post"@en;
-    rdfs:subClassOf owl:Thing .
+    rdfs:subClassOf :Post .
 
 # Properties with FacebookPost domain
 # TODO map to dc:date
 # :date rdfs:domain :FacebookPost .
 
-:link a owl:DatatypeProperty;
+
+:mediaUrl a owl:DatatypeProperty;
+    rdfs:subPropertyOf schema:url;
     rdfs:label "link"@en;
-    rdfs:comment "Enlace del post"@es;
-    rdfs:comment "Link of the post"@en;
-    rdfs:domain :FacebookPost;
+    rdfs:comment "Enlace a contenido multimedia del post"@es;
+    rdfs:comment "Link to multimedia of the post"@en;
     rdfs:range xsd:string .
 
-:message a owl:DatatypeProperty;
-    rdfs:label "message"@en;
-    rdfs:comment "Mensaje del post"@es;
-    rdfs:comment "Message of the post"@en;
-    rdfs:domain :FacebookPost;
-    rdfs:range xsd:string .
-
-:postUrl a owl:DatatypeProperty;
-    rdfs:label "postUrl"@en;
-    rdfs:comment "URL del post"@es;
-    rdfs:comment "Post URL"@en;
-    rdfs:domain :FacebookPost;
-    rdfs:range xsd:string .
-
-:score a owl:DatatypeProperty;
-    rdfs:label "score"@en;
-    rdfs:comment "Puntaje del post"@es;
-    rdfs:comment "Post score"@en;
-    rdfs:domain :FacebookPost;
-    rdfs:range xsd:integer .
-
-:updated a owl:DatatypeProperty;
-    rdfs:label "updated"@en;
-    rdfs:comment "Fecha de actualización del post"@es;
-    rdfs:comment "Post update date"@en;
-    rdfs:domain :FacebookPost;
-    rdfs:range xsd:date .
-
-:subscriberCount a owl:DatatypeProperty;
-    rdfs:label "subscriberCount"@en;
-    rdfs:comment "Cantidad de suscriptores"@es;
-    rdfs:comment "Subscriber count"@en;
-    rdfs:domain :FacebookPost;
-    rdfs:range xsd:integer .
+# sioc:content
+# :message a owl:DatatypeProperty;
+#     rdfs:label "message"@en;
+#     rdfs:comment "Mensaje del post"@es;
+#     rdfs:comment "Message of the post"@en;
+#     rdfs:domain :FacebookPost;
+#     rdfs:range xsd:string .
 
 :videoLengthMs a owl:DatatypeProperty;
     rdfs:label "videoLengthMs"@en;
@@ -643,14 +664,14 @@ sioc:content a rdf:Property .
     rdfs:domain :FacebookPost;
     rdfs:range xsd:string .
 
-:title a owl:DatatypeProperty;
+:titlePost a owl:DatatypeProperty;
     rdfs:label "title"@en;
     rdfs:comment "Título del video del post"@es;
     rdfs:comment "Post video title"@en;
     rdfs:domain :FacebookPost;
     rdfs:range xsd:string .
 
-:description rdfs:domain :FacebookPost .
+# :description rdfs:domain :FacebookPost .
 
 :liveVideoStatus a owl:DatatypeProperty;
     rdfs:label "liveVideoStatus"@en;
@@ -674,6 +695,7 @@ sioc:content a rdf:Property .
     rdfs:domain :Video;
     rdfs:range xsd:string .
 
+# TODO map to Commission
 :commission a owl:DatatypeProperty;
     rdfs:label "commission"@en;
     rdfs:comment "Comisión del video"@es;
@@ -686,26 +708,25 @@ sioc:content a rdf:Property .
     rdfs:comment "Duración del video"@es;
     rdfs:comment "Video duration"@en;
     rdfs:domain :Video;
-    rdfs:range xsd:string .
+    rdfs:range xsd:time .
 
 # map to Party
 dbo:PoliticalParty a owl:Class;
+    rdfs:subClassOf org:Organization ;
     rdfs:label "PoliticalParty"@en;
     rdfs:comment "Partido político"@es;
     rdfs:comment "Political party"@en .
 
 # Properties with Party domain
-# TODO map to rdfs:label
-# :name a rdfs:domain :Party .
+# :name
 
 # TODO equivalent Class to ConventionMember? or superClass?
 # Candidate
 :Candidate a owl:Class;
-    owl:equivalentClass :ConventionMember .
-#     rdfs:label "Candidate"@en;
-#     rdfs:comment "Candidato"@es;
-#     rdfs:comment "Candidate"@en;
-#     rdfs:subClassOf owl:Thing .
+    rdfs:subClassOf org:Role ;
+    rdfs:label "Candidate"@en;
+    rdfs:comment "Candidato"@es;
+    rdfs:comment "Candidate"@en .
 
 # # Properties with Candidate domain
 # :inVoteName rdfs:domain :Candidate .
@@ -746,31 +767,29 @@ dbo:PoliticalParty a owl:Class;
     rdfs:subClassOf owl:Thing .
 
 # Properties with VoteResult domain
-# TODO map to rdfs:label
-# :name a rdfs:domain :VoteResult .
+# :name
 
 # TwitterAccount
 :TwitterAccount a owl:Class;
     rdfs:label "TwitterAccount"@en;
     rdfs:comment "Cuenta de Twitter"@es;
     rdfs:comment "Twitter account"@en;
-    rdfs:subClassOf owl:Thing .
+    rdfs:subClassOf foaf:OnlineAccount .
 
 # Properties with TwitterAccount domain
-dcmi:identifier rdfs:domain :TwitterAccount .
+# dcmi:identifier
 
-:name rdfs:domain :TwitterAccount .
+:username rdfs:domain foaf:OnlineAccount ;
+    rdfs:range xsd:string .
 
-# TODO map to schema:url
-# :url a owl:DatatypeProperty;
+# :url
+# :description
 
-:description rdfs:domain :TwitterAccount .
-
-:verified a owl:DatatypeProperty;
+:isVerified a owl:DatatypeProperty;
     rdfs:label "verified"@en;
     rdfs:comment "¿Está verificada la cuenta?"@es;
     rdfs:comment "Is the account verified?"@en;
-    rdfs:domain :TwitterAccount;
+    rdfs:domain foaf:OnlineAccount;
     rdfs:range xsd:boolean .
 
 :location a owl:DatatypeProperty;
@@ -780,10 +799,9 @@ dcmi:identifier rdfs:domain :TwitterAccount .
     rdfs:domain :TwitterAccount;
     rdfs:range xsd:string .
 
-# TODO map to :createdAt
-# :createdAt rdfs:domain :TwitterAccount .
+# :createdAt .
 
-:protected a owl:DatatypeProperty;
+:isProtected a owl:DatatypeProperty;
     rdfs:label "protected"@en;
     rdfs:comment "¿Está protegida la cuenta de Twitter?"@es;
     rdfs:comment "Is the Twitter account protected?"@en;
@@ -792,7 +810,7 @@ dcmi:identifier rdfs:domain :TwitterAccount .
 
 :screenName a owl:DatatypeProperty;
     rdfs:label "screenName"@en;
-    rdfs:comment "Nombre de usuario de la cuenta de Twitter"@es;
+    rdfs:comment "Nombre de usuario en pantalla de la cuenta de Twitter"@es;
     rdfs:comment "Twitter account screen name"@en;
     rdfs:domain :TwitterAccount;
     rdfs:range xsd:string .
@@ -811,7 +829,8 @@ dcmi:identifier rdfs:domain :TwitterAccount .
     rdfs:domain :TwitterAccount;
     rdfs:range xsd:integer .
 
-:profileImageUrlHttps a owl:DatatypeProperty;
+:profileImageUrl a owl:DatatypeProperty;
+    rdfs:subPropertyOf schema:url;
     rdfs:label "profileImageUrlHttps"@en;
     rdfs:comment "URL de la imagen de perfil de la cuenta de Twitter"@es;
     rdfs:comment "Twitter account profile image URL"@en;
@@ -840,20 +859,21 @@ dcmi:identifier rdfs:domain :TwitterAccount .
     rdfs:range xsd:integer .
 
 :profileBannerUrl a owl:DatatypeProperty;
+    rdfs:subPropertyOf schema:url;
     rdfs:label "profileBannerUrl"@en;
     rdfs:comment "URL del banner de la cuenta de Twitter"@es;
     rdfs:comment "Twitter account banner URL"@en;
     rdfs:domain :TwitterAccount;
     rdfs:range xsd:string .
 
-:defaultProfile a owl:DatatypeProperty;
+:isDefaultProfile a owl:DatatypeProperty;
     rdfs:label "defaultProfile"@en;
     rdfs:comment "¿Es el perfil por defecto de la cuenta de Twitter?"@es;
     rdfs:comment "Is the Twitter account default profile?"@en;
     rdfs:domain :TwitterAccount;
     rdfs:range xsd:boolean .
 
-:defaultProfileImage a owl:DatatypeProperty;
+:isDefaultProfileImage a owl:DatatypeProperty;
     rdfs:label "defaultProfileImage"@en;
     rdfs:comment "¿Es la imagen de perfil por defecto de la cuenta de Twitter?"@es;
     rdfs:comment "Is the Twitter account default profile image?"@en;
@@ -868,15 +888,14 @@ dcmi:identifier rdfs:domain :TwitterAccount .
     rdfs:subClassOf owl:Thing .
 
 # Properties with TypeContent domain
-# TODO map to rdfs:label
-# :name a rdfs:domain :TypeContent .
+# :name
 
 # FacebookAccount
 :FacebookAccount a owl:Class;
     rdfs:label "FacebookAccount"@en;
     rdfs:comment "Cuenta de Facebook"@es;
     rdfs:comment "Facebook account"@en;
-    rdfs:subClassOf owl:Thing .
+    rdfs:subClassOf foaf:OnlineAccount .
 
 # Properties with FacebookAccount domain
 :handle a owl:DatatypeProperty;
@@ -892,17 +911,20 @@ dcmi:identifier rdfs:domain :FacebookAccount .
 
 # :url rdfs:domain :FacebookAccount .
 
-:verified rdfs:domain :FacebookAccount .
+# :verified rdfs:domain :FacebookAccount .
 
 :platformId a owl:DatatypeProperty;
+    rdfs:subPropertyOf dcmi:identifier;
     rdfs:label "platformId"@en;
     rdfs:comment "Identificador de la plataforma de la cuenta de Facebook"@es;
     rdfs:comment "Facebook account platform identifier"@en;
     rdfs:domain :FacebookAccount;
     rdfs:range xsd:string .
 
-:subscriberCount rdfs:domain :FacebookAccount .
+:subscriberCount rdfs:domain foaf:OnlineAccount ;
+    rdfs:range xsd:integer .
 
+# TODO is it needed?
 :platform a owl:DatatypeProperty;
     rdfs:label "platform"@en;
     rdfs:comment "Plataforma de la cuenta de Facebook"@es;
@@ -910,26 +932,27 @@ dcmi:identifier rdfs:domain :FacebookAccount .
     rdfs:domain :FacebookAccount;
     rdfs:range xsd:string .
 
-:profileImage a owl:DatatypeProperty;
+:profileImageUrl a owl:DatatypeProperty;
+    rdfs:subPropertyOf schema:url;
     rdfs:label "profileImage"@en;
-    rdfs:comment "Imagen de perfil de la cuenta de Facebook"@es;
-    rdfs:comment "Facebook account profile image"@en;
+    rdfs:comment "Url de la imagen de perfil de la cuenta de Facebook"@es;
+    rdfs:comment "Facebook account profile image url"@en;
     rdfs:domain :FacebookAccount;
     rdfs:range xsd:string .
 
-:pageCreatedDate a owl:DatatypeProperty;
-    rdfs:label "pageCreatedDate"@en;
-    rdfs:comment "Fecha de creación de la página de la cuenta de Facebook"@es;
-    rdfs:comment "Facebook account page created date"@en;
-    rdfs:domain :FacebookAccount;
-    rdfs:range xsd:date .
+# :pageCreatedDate a owl:DatatypeProperty;
+#     rdfs:label "pageCreatedDate"@en;
+#     rdfs:comment "Fecha de creación de la página de la cuenta de Facebook"@es;
+#     rdfs:comment "Facebook account page created date"@en;
+#     rdfs:domain :FacebookAccount;
+#     rdfs:range xsd:date .
 
-:pageDescription a owl:DatatypeProperty;
-    rdfs:label "pageDescription"@en;
-    rdfs:comment "Descripción de la página de la cuenta de Facebook"@es;
-    rdfs:comment "Facebook account page description"@en;
-    rdfs:domain :FacebookAccount;
-    rdfs:range xsd:string .
+# :pageDescription a owl:DatatypeProperty;
+#     rdfs:label "pageDescription"@en;
+#     rdfs:comment "Descripción de la página de la cuenta de Facebook"@es;
+#     rdfs:comment "Facebook account page description"@en;
+#     rdfs:domain :FacebookAccount;
+#     rdfs:range xsd:string .
 
 :pageAdminTopCountry a owl:DatatypeProperty;
     rdfs:label "pageAdminTopCountry"@en;
@@ -950,59 +973,38 @@ dcmi:identifier rdfs:domain :FacebookAccount .
     rdfs:label "Intervention"@en;
     rdfs:comment "Intervención"@es;
     rdfs:comment "Intervention"@en;
-    rdfs:subClassOf owl:Thing .
+    rdfs:subClassOf :Speech .
 
 # Properties with Intervention domain
-:session a owl:DatatypeProperty;
-    rdfs:label "session"@en;
-    rdfs:comment "Sesión de la intervención"@es;
-    rdfs:comment "Session of the intervention"@en;
-    rdfs:domain :Intervention;
-    rdfs:range xsd:string .
+# :session a owl:DatatypeProperty;
 
-:bench a owl:DatatypeProperty;
-    rdfs:label "bench"@en;
-    rdfs:comment "Bancada de la intervención"@es;
-    rdfs:comment "Bench of the intervention"@en;
-    rdfs:domain :Intervention;
-    rdfs:range xsd:string .
+# :bench a owl:DatatypeProperty;
 
-:speaker a owl:DatatypeProperty;
-    rdfs:label "speaker"@en;
-    rdfs:comment "Orador de la intervención"@es;
-    rdfs:comment "Speaker of the intervention"@en;
-    rdfs:domain :Intervention;
-    rdfs:range xsd:string .
+# :speaker a owl:DatatypeProperty;
 
-# map to :text
 # :text rdfs:domain :Intervention .
 
-:diff rdfs:domain :Intervention .
+# :diff rdfs:domain :Intervention .
 
-:startTime rdfs:domain :Intervention .
+# :startTime rdfs:domain :Intervention .
 
-:startYouTube rdfs:domain :Intervention .
+# :startYouTube rdfs:domain :Intervention .
 
-:endYouTube rdfs:domain :Intervention .
+# :endYouTube rdfs:domain :Intervention .
 
 # TODO subclass of?
 # District
-:District a owl:Class;
-    rdfs:label "District"@en;
-    rdfs:comment "Distrito"@es;
-    rdfs:comment "District"@en;
-    rdfs:subClassOf owl:Thing .
+dbo:District a owl:Class .
 
 # Properties with District domain
-# TODO map to rdfs:label
 # :name a rdfs:domain :District .
 
 # PlenaryMaterial
-:PlenarySession a owl:Class;
-    rdfs:label "PlenarySession"@en;
-    rdfs:comment "Sesión del Pleno"@es;
-    rdfs:comment "Plenary Session"@en;
-    rdfs:subClassOf owl:Thing .
+:PlenaryMaterial a owl:Class;
+    rdfs:label "PlenaryMaterial"@en;
+    rdfs:comment "Material del Pleno"@es;
+    rdfs:comment "Plenary Material"@en;
+    rdfs:subClassOf :PoliticalEvent .
 
 # Properties with PlenaryMaterial domain
 # :numId map to dcmi:identifier
@@ -1118,9 +1120,9 @@ dcmi:identifier rdfs:domain :FacebookAccount .
 # PoliticalGroupConvention
 :PoliticalGroupConvention a owl:Class;
     rdfs:label "PoliticalGroupConvention"@en;
-    rdfs:comment "Convención de grupo político"@es;
+    rdfs:comment "Grupo político de la Convención"@es;
     rdfs:comment "Political group convention"@en;
-    rdfs:subClassOf owl:Thing .
+    rdfs:subClassOf org:Organization .
 
 # Properties with PoliticalGroupConvention domain
 # TODO map to rdfs:label
@@ -1131,7 +1133,7 @@ dcmi:identifier rdfs:domain :FacebookAccount .
     rdfs:label "InstagramPost"@en;
     rdfs:comment "Post de Instagram"@es;
     rdfs:comment "Instagram post"@en;
-    rdfs:subClassOf owl:Thing .
+    rdfs:subClassOf :Post .
 
 # Properties with InstagramPost domain
 dcmi:identifier rdfs:domain :InstagramPost .
@@ -1139,13 +1141,7 @@ dcmi:identifier rdfs:domain :InstagramPost .
 # TODO map to dc:date
 # :date rdfs:domain :InstagramPost .
 
-:postUrl rdfs:domain :InstagramPost .
-
-:score rdfs:domain :InstagramPost .
-
-:updated rdfs:domain :InstagramPost .
-
-:description rdfs:domain :InstagramPost .
+# :description rdfs:domain :InstagramPost .
 
 :imageText a owl:DatatypeProperty;
     rdfs:label "imageText"@en;
@@ -1153,8 +1149,6 @@ dcmi:identifier rdfs:domain :InstagramPost .
     rdfs:comment "Instagram post image text"@en;
     rdfs:domain :InstagramPost;
     rdfs:range xsd:string .
-
-:subscriberCount rdfs:domain :InstagramPost .
 
 :legacyId a owl:DatatypeProperty;
     rdfs:label "legacyId"@en;
@@ -1175,7 +1169,7 @@ dcmi:identifier rdfs:domain :InstagramPost .
     rdfs:label "Commission"@en;
     rdfs:comment "Comisión"@es;
     rdfs:comment "Commission"@en;
-    rdfs:subClassOf owl:Thing .
+    rdfs:subClassOf org:Organization .
 
 # Properties with Commission domain
 dcmi:identifier rdfs:domain :Commission .
@@ -1188,7 +1182,7 @@ foaf:gender rdfs:range xsd:string .
     rdfs:label "InstagramAccount"@en;
     rdfs:comment "Cuenta de Instagram"@es;
     rdfs:comment "Instagram account"@en;
-    rdfs:subClassOf owl:Thing .
+    rdfs:subClassOf foaf:OnlineAccount .
 
 # Properties with InstagramAccount domain
 :handle rdfs:domain :InstagramAccount .
@@ -1203,7 +1197,7 @@ dcmi:identifier rdfs:domain :InstagramAccount .
 
 :platformId rdfs:domain :InstagramAccount .
 
-:subscriberCount rdfs:domain :InstagramAccount .
+# :subscriberCount rdfs:domain :InstagramAccount .
 
 :platform rdfs:domain :InstagramAccount .
 
@@ -1227,6 +1221,11 @@ dcmi:identifier rdfs:domain :InstagramAccount .
 # TODO map to rdfs:label
 # :name rdfs:domain :Language .
 
+:CommissionSession a owl:Class;
+    rdfs:label "CommissionSession"@en;
+    rdfs:comment "Sesión de la Comisión"@es;
+    rdfs:comment "Commission Session"@en;
+    rdfs:subClassOf :PoliticalEvent .
 
 
 
