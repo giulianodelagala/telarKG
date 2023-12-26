@@ -1,0 +1,697 @@
+{
+  "ConventionMember": {
+    "self": ":ConventionMember",
+    "inVoteName": {
+      "mapTo:": "foaf:name",
+      "type": "xsd:string"
+    },
+    "age": {
+      "mapTo:": ":age",
+      "type": "xsd:string"
+    },
+    "c": {
+      "mapTo:": "dcmi:identifier",
+      "type": "xsd:string"
+    },
+    "charge": {
+      "mapTo:": ":chargeId",
+      "type": "xsd:string"
+    },
+    "name": ["foaf:name", "^^xsd:string"],
+    "orden": {
+      "mapTo:": ":orderId",
+      "type": "xsd:string"
+    },
+    "photo": {
+      "mapTo:": ":isPhotoAvailable",
+      "type": "xsd:boolean"
+    },
+    "photoId": {
+      "mapTo:": ":photoId",
+      "type": "xsd:string"
+    },
+    "web": {
+      "mapTo:": ":homepage",
+      "type": "xsd:string"
+    },
+    "zone": {
+      "mapTo:": ":zoneId",
+      "type": "xsd:string"
+    },
+    "occupation": {
+      "mapTo:": ":occupation",
+      "type": "xsd:string"
+    },
+    "description": {
+      "mapTo:": "dc:description",
+      "type": "xsd:string"
+    },
+    "elections": {
+      "mapTo:": ":elections",
+      "type": "xsd:string"
+    },
+    "patrimony": {
+      "mapTo:": ":patrimonyId",
+      "type": "xsd:string"
+    },
+    "pact2409": [":pact2409", "^^xsd:string"],
+    "nominateNames": [":nominateNames", "^^xsd:string"],
+    "nombreEnPartido": [":nombreEnPartido", "^^xsd:string"],
+    "wikidata": {
+      "mapTo:": ":wikidataUrl",
+      "type": "xsd:string"
+    },
+    "alternative": {
+      "mapTo:": ":alternativeTo",
+      "type": "xsd:string"
+    },
+    "resignation": {
+      "mapTo:": ":isResignation",
+      "type": "xsd:boolean"
+    }
+  },
+  "Chat": {
+    "self": {
+      "mapTo:": ":YouTubeChatPost"
+    },
+    "date": {
+      "mapTo:": "dc:date",
+      "type": "xsd:date"
+    },
+    "session": {
+      "mapTo:": ":sessionId",
+      "type": "xsd:string"
+    },
+    "text": {
+      "mapTo:": "sioc:content",
+      "type": "xsd:string"
+    },
+    "user": {
+      "mapTo:": ":userPost",
+      "type": "xsd:string"
+    },
+    "timeYoutube": {
+      "mapTo:": ":timeInYouTube",
+      "type": "xsd:string"
+    }
+  },
+  "Pact": {
+    "self": {
+      "mapTo:": ":Pact"
+    },
+    "name": {
+      "mapTo:": "foaf:name",
+      "type": "xsd:string"
+    }
+  },
+  "CommissionMaterial": {
+    "self": {
+      "mapTo:": ":CommissionMaterial"
+    },
+    "name": {
+      "mapTo:": "rdfs:label",
+      "type": "xsd:string"
+    },
+    "material": {
+      "mapTo:": ":materialText",
+      "type": "xsd:string"
+    },
+    "nameCc": {
+      "mapTo:": ":nameChair",
+      "type": "xsd:string"
+    },
+    "type": {
+      "mapTo:": ":materialType",
+      "type": "xsd:string"
+    },
+    "date": {
+      "mapTo:": "dc:date",
+      "type": "xsd:date"
+    },
+    "idVotation": {
+      "mapTo:": ":votationId",
+      "type": "xsd:string"
+    },
+    "totalAffirmative": {
+      "mapTo:": ":totalAffirmative",
+      "type": "xsd:string"
+    },
+    "totalAgainst": {
+      "mapTo:": ":totalNegative",
+      "type": "xsd:string"
+    },
+    "totalAbstention": {
+      "mapTo:": ":totalAbstention",
+      "type": "xsd:string"
+    }
+  },
+  "TrendingTopic": {
+    "self": {
+      "mapTo:": ":TrendingTopic"
+    },
+    "createdAt": {
+      "mapTo:": "dc:created",
+      "type": "xsd:date"
+    }
+  },
+  "Topic": {
+    "self": {
+      "mapTo:": ":Topic"
+    },
+    "name": {
+      "mapTo:": "rdfs:label",
+      "type": "xsd:string"
+    },
+    "query": {
+      "mapTo:": ":queryTopic",
+      "type": "xsd:string"
+    }
+  },
+  "Transcription": {
+    "self": {
+      "mapTo:": ":Transcription"
+    },
+    "date": {
+      "mapTo:": "dc:date",
+      "type": "xsd:date"
+    },
+    "session": {
+      "mapTo:": ":sessionId",
+      "type": "xsd:string"
+    },
+    "text": {
+      "mapTo:": ":text",
+      "type": "xsd:string"
+    }
+  },
+  "Tweet": {
+    "id": {
+      "mapTo:": "dcmi:identifier",
+      "type": "xsd:string"
+    },
+    "text": {
+      "mapTo:": "sioc:content",
+      "type": "xsd:string"
+    },
+    "createdAt": {
+      "mapTo:": "dc:created",
+      "type": "xsd:date"
+    },
+    "isQuoteStatus": {
+      "mapTo:": ":isQuoteStatus",
+      "type": "xsd:boolean"
+    },
+    "truncated": {
+      "mapTo:": ":isTruncated",
+      "type": "xsd:boolean"
+    },
+    "favorited": {
+      "mapTo:": ":isFavorited",
+      "type": "xsd:boolean"
+    },
+    "retweetCount": {
+      "mapTo:": ":retweetCount",
+      "type": "xsd:integer"
+    },
+    "favoriteCount": {
+      "mapTo:": ":favoriteCount",
+      "type": "xsd:integer"
+    },
+    "retweeted": {
+      "mapTo:": ":isRetweeted",
+      "type": "xsd:boolean"
+    },
+    "inReplyToStatusIdStr": {
+      "mapTo:": ":inReplyToStatusIdStr",
+      "type": "xsd:string"
+    },
+    "inReplyToUserId": {
+      "mapTo:": ":inReplyToUserId",
+      "type": "xsd:string"
+    },
+    "inReplyToUserIdStr": {
+      "mapTo:": ":inReplyToUserIdStr",
+      "type": "xsd:string"
+    },
+    "inReplyToStatusId": {
+      "mapTo:": ":inReplyToStatusId",
+      "type": "xsd:string"
+    },
+    "inReplyToScreenName": {
+      "mapTo:": ":inReplyToScreenName",
+      "type": "xsd:string"
+    },
+    "possiblySensitive": {
+      "mapTo:": ":isPossiblySensitive",
+      "type": "xsd:boolean"
+    },
+    "quoteCount": {
+      "mapTo:": ":quoteCount",
+      "type": "xsd:integer"
+    },
+    "replyCount": {
+      "mapTo:": ":replyCount",
+      "type": "xsd:integer"
+    },
+    "filterLevel": {
+      "mapTo:": ":filterLevel",
+      "type": "xsd:string"
+    }
+  },
+  "Speech": {
+    "self": {
+      "mapTo:": ":Speech"
+    },
+    "bench": {
+      "mapTo:": ":bench",
+      "type": "xsd:string"
+    },
+    "session": {
+      "mapTo:": ":sessionId",
+      "type": "xsd:string"
+    },
+    "speaker": {
+      "mapTo:": ":speaker",
+      "type": "xsd:string"
+    },
+    "text": {
+      "mapTo:": ":text",
+      "type": "xsd:string"
+    },
+    "diff": {
+      "mapTo:": ":diff",
+      "type": "xsd:string"
+    },
+    "startTime": {
+      "mapTo:": ":startTime",
+      "type": "xsd:string"
+    },
+    "startYoutube": {
+      "mapTo:": ":startYoutube",
+      "type": "xsd:string"
+    },
+    "endYoutube": {
+      "mapTo:": ":endYoutube",
+      "type": "xsd:string"
+    }
+  },
+  "FacebookPost": {
+    "self": {
+      "mapTo:": ":FacebookPost"
+    },
+    "date": {
+      "mapTo:": "dc:date",
+      "type": "xsd:date"
+    },
+    "link": {
+      "mapTo:": "mediaUrl",
+      "type": "xsd:string"
+    },
+    "message": {
+      "mapTo:": "sioc:content",
+      "type": "xsd:string"
+    },
+    "postUrl": {
+      "mapTo:": "schema:url",
+      "type": "xsd:string"
+    },
+    "score": {
+      "mapTo:": ":score",
+      "type": "xsd:integer"
+    },
+    "updated": {
+      "mapTo:": ":updated",
+      "type": "xsd:date"
+    },
+    "subscriberCount": {
+      "mapTo:": ":subscriberCountPost",
+      "type": "xsd:integer"
+    },
+    "videoLengthMs": {
+      "mapTo:": ":videoLengthMs",
+      "type": "xsd:integer"
+    },
+    "caption": {
+      "mapTo:": ":caption",
+      "type": "xsd:string"
+    },
+    "title": {
+      "mapTo:": ":title",
+      "type": "xsd:string"
+    },
+    "description": {
+      "mapTo:": "dc:description",
+      "type": "xsd:string"
+    },
+    "liveVideoStatus": {
+      "mapTo:": ":liveVideoStatus",
+      "type": "xsd:string"
+    }
+  },
+  "Video": {
+    "videoName": {
+      "mapTo:": ":videoName",
+      "type": "xsd:string"
+    },
+    "commission": {
+      "mapTo:": ":commission",
+      "type": "xsd:string"
+    },
+    "duration": {
+      "mapTo:": ":duration",
+      "type": "xsd:time"
+    }
+  },
+  "Party": {
+    "self": {
+      "mapTo:": ":PoliticalParty"
+    },
+    "name": {
+      "mapTo:": "rdfs:label",
+      "type": "xsd:string"
+    }
+  },
+  "Candidate": {
+    "inVoteName": {
+      "mapTo:": "foaf:name",
+      "type": "xsd:string"
+    },
+    "name": {
+      "mapTo:": "nothing"
+    },
+    "age": {
+      "mapTo:": ":age",
+      "type": "xsd:string"
+    },
+    "c": {
+      "mapTo:": "dcmi:identifier",
+      "type": "xsd:string"
+    },
+    "charge": {
+      "mapTo:": ":chargeId",
+      "type": "xsd:string"
+    },
+    "orden": {
+      "mapTo:": ":orderId",
+      "type": "xsd:string"
+    },
+    "photo": {
+      "mapTo:": ":isPhotoAvailable",
+      "type": "xsd:boolean"
+    },
+    "photoId": {
+      "mapTo:": ":photoId",
+      "type": "xsd:string"
+    },
+    "zone": {
+      "mapTo:": ":zoneId",
+      "type": "xsd:string"
+    },
+    "occupation": {
+      "mapTo:": ":occupation",
+      "type": "xsd:string"
+    },
+    "description": {
+      "mapTo:": "dc:description",
+      "type": "xsd:string"
+    },
+    "elections": {
+      "mapTo:": ":elections",
+      "type": "xsd:string"
+    },
+    "patrimony": {
+      "mapTo:": ":patrimonyId",
+      "type": "xsd:string"
+    },
+    "web": {
+      "mapTo:": ":homepage",
+      "type": "xsd:string"
+    },
+    "alternative": {
+      "mapTo:": ":alternativeTo",
+      "type": "xsd:string"
+    }
+  },
+  "VoteResult": {
+    "self": {
+      "mapTo:": ":VoteResult"
+    },
+    "name": {
+      "mapTo:": "rdfs:label",
+      "type": "xsd:string"
+    }
+  },
+  "TwitterAccount": {
+    "self": {
+      "mapTo:": ":TwitterAccount"
+    },
+    "id": {
+      "mapTo:": "dcmi:identifier",
+      "type": "xsd:string"
+    },
+    "name": {
+      "mapTo:": ":username",
+      "type": "xsd:string"
+    },
+    "url": {
+      "mapTo:": "schema:url",
+      "type": "xsd:string"
+    },
+    "description": {
+      "mapTo:": "dc:description",
+      "type": "xsd:string"
+    },
+    "verified": {
+      "mapTo:": ":isVerified",
+      "type": "xsd:boolean"
+    },
+    "location": {
+      "mapTo:": ":location",
+      "type": "xsd:string"
+    },
+    "createdAt": {
+      "mapTo:": "dc:created",
+      "type": "xsd:date"
+    },
+    "protected": {
+      "mapTo:": ":isProtected",
+      "type": "xsd:boolean"
+    },
+    "screenName": {
+      "mapTo:": ":screenName",
+      "type": "xsd:string"
+    },
+    "followersCount": {
+      "mapTo:": ":followersCount",
+      "type": "xsd:integer"
+    },
+    "friendsCount": {
+      "mapTo:": ":friendsCount",
+      "type": "xsd:integer"
+    },
+    "profileImageUrlHttps": {
+      "mapTo:": ":profileImageUrl",
+      "type": "xsd:string"
+    },
+    "listedCount": {
+      "mapTo:": ":listedCount",
+      "type": "xsd:integer"
+    },
+    "favouritesCount": {
+      "mapTo:": ":favouritesCount",
+      "type": "xsd:integer"
+    },
+    "statusesCount": {
+      "mapTo:": ":statusesCount",
+      "type": "xsd:integer"
+    },
+    "profileBannerUrl": {
+      "mapTo:": ":profileBannerUrl",
+      "type": "xsd:string"
+    },
+    "defaultProfile": {
+      "mapTo:": ":isDefaultProfile",
+      "type": "xsd:boolean"
+    },
+    "defaultProfileImage": {
+      "mapTo:": ":isDefaultProfileImage",
+      "type": "xsd:boolean"
+    }
+  },
+  "TypeContent": {
+    "self": {
+      "mapTo:": ":TypeContent"
+    },
+    "name": {
+      "mapTo:": "rdfs:label",
+      "type": "xsd:string"
+    }
+  },
+  "FacebookAccount": {
+    "self": {
+      "mapTo:": ":FacebookAccount"
+    },
+    "handle": {
+      "mapTo:": ":handle",
+      "type": "xsd:string"
+    },
+    "id": {
+      "mapTo:": "dcmi:identifier",
+      "type": "xsd:string"
+    },
+    "name": {
+      "mapTo:": ":username",
+      "type": "xsd:string"
+    },
+    "url": {
+      "mapTo:": "schema:url",
+      "type": "xsd:string"
+    },
+    "verified": {
+      "mapTo:": ":isVerified",
+      "type": "xsd:boolean"
+    },
+    "platformId": {
+      "mapTo:": ":platformId",
+      "type": "xsd:string"
+    },
+    "subscriberCount": {
+      "mapTo:": ":subscriberCount",
+      "type": "xsd:integer"
+    },
+    "platform": {
+      "mapTo:": ":platform",
+      "type": "xsd:string"
+    },
+    "profileImage": {
+      "mapTo:": ":profileImage",
+      "type": "xsd:string"
+    },
+    "pageCreatedDate": {
+      "mapTo:": "dc:created",
+      "type": "xsd:date"
+    },
+    "pageDescription": {
+      "mapTo:": "dc:description",
+      "type": "xsd:string"
+    },
+    "pageAdminTopCountry": {
+      "mapTo:": ":pageAdminTopCountry",
+      "type": "xsd:string"
+    },
+    "accountType": {
+      "mapTo:": ":accountType",
+      "type": "xsd:string"
+    }
+  },
+  "Intervention": {
+    "self": {
+      "mapTo:": ":Intervention"
+    },
+    "session": {
+      "mapTo:": ":sessionId",
+      "type": "xsd:string"
+    },
+    "bench": {
+      "mapTo:": ":bench",
+      "type": "xsd:string"
+    },
+    "speaker": {
+      "mapTo:": ":speaker",
+      "type": "xsd:string"
+    },
+    "text": {
+      "mapTo:": ":text",
+      "type": "xsd:string"
+    },
+    "diff": {
+      "mapTo:": ":diff",
+      "type": "xsd:string"
+    },
+    "startTime": {
+      "mapTo:": ":startTime",
+      "type": "xsd:string"
+    },
+    "startYoutube": {
+      "mapTo:": ":startYoutube",
+      "type": "xsd:string"
+    },
+    "endYoutube": {
+      "mapTo:": ":endYoutube",
+      "type": "xsd:string"
+    }
+  },
+  "District": {
+    "self": {
+      "mapTo:": "dbo:District"
+    },
+    "name": {
+      "mapTo:": "rdfs:label",
+      "type": "xsd:string"
+    }
+  },
+  "PlenaryMaterial": {
+    "self": ":PlenarySession",
+    "numId": ["dcmi:identifier", "^^xsd:string"],
+    "table": [":agenda", "^^xsd:string"],
+    "materialKeywords": [":materialKeywords", "^^xsd:string"],
+    "indexVote": [":indexVote", ""],
+    "votacionId": [":votacionId", "^^xsd:string"],
+    "totalYes": [":totalAffirmative", ""],
+    "totalNo": [":totalNegative", ""],
+    "totalAbstentions": [":totalAbstention", ""],
+    "totalDispensed": [":totalDispensed", ""],
+    "textDate": [0, 0],
+    "date": ["dc:date", "^^xsd:date"],
+    "day": [0, 0],
+    "month": [0, 0],
+    "year": [0, 0],
+    "url": ["schema:url", "^^xsd:string"],
+    "sessionKeywords": [":sessionKeywords", "^^xsd:string"],
+    "sessionAccount": [":sessionReport", "^^xsd:string"],
+    "detailTable": [":sessionRemarks", "^^xsd:string"],
+    "material": [":materialText", "^^xsd:string"]
+  },
+  "PoliticalGroupConvention": {
+    "name": "El nombre de la convención del grupo político es"
+  },
+  "InstagramPost": {
+    "id": "El id del post de instagram es",
+    "date": "La fecha del post de instagram es",
+    "postUrl": "La url del post de instagram es",
+    "score": "El score del post de instagram es",
+    "updated": "La fecha de actualización del post de instagram es",
+    "description": "La descripción del post de instagram es:",
+    "imageText": "El texto de la imagen del post de instagram es:",
+    "subscriberCount": "El número de subscriptores del post de instagram es",
+    "legacyId": "El id legado del post de instagram es",
+    "likeAndViewCountsDisabled": "¿Están deshabilitados los conteos de likes y vistas del post de instagram?"
+  },
+  "Commission": {
+    "id": "El id de la comisión es"
+  },
+  "PlenarySession": {
+    "id": "El id de la sesión plenaria es"
+  },
+  "CommissionSession": {
+    "id": "El id de la sesión de comisión es"
+  },
+  "Gender": {
+    "name": "El nombre del género es"
+  },
+  "InstagramAccount": {
+    "handle": "El handle de la cuenta de instagram es",
+    "id": "El id de la cuenta de instagram es",
+    "name": "El nombre de la cuenta de instagram es",
+    "url": "La url de la cuenta de instagram es",
+    "verified": "¿Está verificada la cuenta de instagram?",
+    "platformId": "El id de la plataforma de la cuenta de instagram es",
+    "subscriberCount": "El número de subscriptores de la cuenta de instagram es",
+    "platform": "La plataforma de la cuenta de instagram es",
+    "profileImage": "La imagen de perfil de la cuenta de instagram es"
+  },
+  "Language": {
+    "code": "El código del lenguaje es",
+    "name": "El nombre del lenguaje es"
+  }
+}
