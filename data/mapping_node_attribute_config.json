@@ -1,6 +1,11 @@
 {
   "ConventionMember": {
-    "self": ":ConventionMember",
+    "self": {
+      "mapTo:": "foaf:Person",
+      "additionalProperties": {
+        "org:role": ":ConventionMember"
+      }
+    },
     "inVoteName": {
       "mapTo:": "foaf:name",
       "type": "xsd:string"
@@ -17,7 +22,10 @@
       "mapTo:": ":chargeId",
       "type": "xsd:string"
     },
-    "name": ["foaf:name", "^^xsd:string"],
+    "name": {
+      "mapTo:": "!discard",
+      "type": "!discard"
+    },
     "orden": {
       "mapTo:": ":orderId",
       "type": "xsd:string"
@@ -54,9 +62,18 @@
       "mapTo:": ":patrimonyId",
       "type": "xsd:string"
     },
-    "pact2409": [":pact2409", "^^xsd:string"],
-    "nominateNames": [":nominateNames", "^^xsd:string"],
-    "nombreEnPartido": [":nombreEnPartido", "^^xsd:string"],
+    "pact2409": {
+      "mapTo:": ":pact2409",
+      "type": "xsd:string"
+    },
+    "nominateNames": {
+      "mapTo:": ":nominateNames",
+      "type": "xsd:string"
+    },
+    "nombreEnPartido": {
+      "mapTo:": "!discard",
+      "type": "!discard"
+    },
     "wikidata": {
       "mapTo:": ":wikidataUrl",
       "type": "xsd:string"
@@ -372,12 +389,18 @@
     }
   },
   "Candidate": {
+    "self": {
+      "mapTo:": "foaf:Person",
+      "additionalProperties": {
+        "org:role": ":ConventionMember"
+      }
+    },
     "inVoteName": {
       "mapTo:": "foaf:name",
       "type": "xsd:string"
     },
     "name": {
-      "mapTo:": "nothing"
+      "mapTo:": "!discard"
     },
     "age": {
       "mapTo:": ":age",
@@ -631,44 +654,148 @@
     }
   },
   "PlenaryMaterial": {
-    "self": ":PlenarySession",
-    "numId": ["dcmi:identifier", "^^xsd:string"],
-    "table": [":agenda", "^^xsd:string"],
-    "materialKeywords": [":materialKeywords", "^^xsd:string"],
-    "indexVote": [":indexVote", ""],
-    "votacionId": [":votacionId", "^^xsd:string"],
-    "totalYes": [":totalAffirmative", ""],
-    "totalNo": [":totalNegative", ""],
-    "totalAbstentions": [":totalAbstention", ""],
-    "totalDispensed": [":totalDispensed", ""],
-    "textDate": [0, 0],
-    "date": ["dc:date", "^^xsd:date"],
-    "day": [0, 0],
-    "month": [0, 0],
-    "year": [0, 0],
-    "url": ["schema:url", "^^xsd:string"],
-    "sessionKeywords": [":sessionKeywords", "^^xsd:string"],
-    "sessionAccount": [":sessionReport", "^^xsd:string"],
-    "detailTable": [":sessionRemarks", "^^xsd:string"],
-    "material": [":materialText", "^^xsd:string"]
+    "self": {
+      "mapTo:": ":PlenaryMaterial"
+    },
+    "numId": {
+      "mapTo:": "dcmi:identifier",
+      "type": "xsd:string"
+    },
+    "table": {
+      "mapTo:": ":agenda",
+      "type": "xsd:string"
+    },
+    "materialKeywords": {
+      "mapTo:": ":hasKeywords",
+      "type": "xsd:string"
+    },
+    "indexVote": {
+      "mapTo:": ":indexVote",
+      "type": "xsd:integer"
+    },
+    "votacionId": {
+      "mapTo:": ":voteId",
+      "type": "xsd:string"
+    },
+    "totalYes": {
+      "mapTo:": ":totalAffirmative",
+      "type": "xsd:integer"
+    },
+    "totalNo": {
+      "mapTo:": ":totalNegative",
+      "type": "xsd:integer"
+    },
+    "totalAbstentions": {
+      "mapTo:": ":totalAbstention",
+      "type": "xsd:integer"
+    },
+    "totalDispensed": {
+      "mapTo:": ":totalDispensed",
+      "type": "xsd:integer"
+    },
+    "textDate": {
+      "mapTo:": "!discard",
+      "type": "!discard"
+    },
+    "date": {
+      "mapTo:": "dc:date",
+      "type": "xsd:date"
+    },
+    "day": {
+      "mapTo:": "!discard",
+      "type": "!discard"
+    },
+    "month": {
+      "mapTo:": "!discard",
+      "type": "!discard"
+    },
+    "year": {
+      "mapTo:": "!discard",
+      "type": "!discard"
+    },
+    "url": {
+      "mapTo:": "schema:url",
+      "type": "xsd:string"
+    },
+    "sessionKeywords": {
+      "mapTo:": ":sessionKeywords",
+      "type": "xsd:string"
+    },
+    "sessionAccount": {
+      "mapTo:": ":sessionAccount",
+      "type": "xsd:string"
+    },
+    "detailTable": {
+      "mapTo:": ":sessionRemarks",
+      "type": "xsd:string"
+    },
+    "material": {
+      "mapTo:": ":materialText",
+      "type": "xsd:string"
+    }
   },
   "PoliticalGroupConvention": {
-    "name": "El nombre de la convención del grupo político es"
+    "self": {
+      "mapTo:": ":PoliticalGroupConvention"
+    },
+    "name": {
+      "mapTo:": "rdfs:label",
+      "type": "xsd:string"
+    }
   },
   "InstagramPost": {
-    "id": "El id del post de instagram es",
-    "date": "La fecha del post de instagram es",
-    "postUrl": "La url del post de instagram es",
-    "score": "El score del post de instagram es",
-    "updated": "La fecha de actualización del post de instagram es",
-    "description": "La descripción del post de instagram es:",
-    "imageText": "El texto de la imagen del post de instagram es:",
-    "subscriberCount": "El número de subscriptores del post de instagram es",
-    "legacyId": "El id legado del post de instagram es",
-    "likeAndViewCountsDisabled": "¿Están deshabilitados los conteos de likes y vistas del post de instagram?"
+    "self": {
+      "mapTo:": ":InstagramPost"
+    },
+    "id": {
+      "mapTo:": "dcmi:identifier",
+      "type": "xsd:string"
+    },
+    "date": {
+      "mapTo:": "dc:date",
+      "type": "xsd:date"
+    },
+    "postUrl": {
+      "mapTo:": "schema:url",
+      "type": "xsd:string"
+    },
+    "score": {
+      "mapTo:": ":score",
+      "type": "xsd:integer"
+    },
+    "updated": {
+      "mapTo:": ":updated",
+      "type": "xsd:date"
+    },
+    "description": {
+      "mapTo:": "dc:description",
+      "type": "xsd:string"
+    },
+    "imageText": {
+      "mapTo:": ":imageText",
+      "type": "xsd:string"
+    },
+    "subscriberCount": {
+      "mapTo:": ":subscriberCount",
+      "type": "xsd:integer"
+    },
+    "legacyId": {
+      "mapTo:": ":legacyId",
+      "type": "xsd:string"
+    },
+    "likeAndViewCountsDisabled": {
+      "mapTo:": ":areLikeAndViewCountsDisabled",
+      "type": "xsd:boolean"
+    }
   },
   "Commission": {
-    "id": "El id de la comisión es"
+    "self": {
+      "mapTo:": ":Commission"
+    },
+    "id": {
+      "mapTo:": "dcmi:identifier",
+      "type": "xsd:string"
+    }
   },
   "PlenarySession": {
     "id": "El id de la sesión plenaria es"
@@ -677,21 +804,63 @@
     "id": "El id de la sesión de comisión es"
   },
   "Gender": {
-    "name": "El nombre del género es"
+    "self": {
+      "mapTo": "Gender"
+    },
+    "name": {
+      "mapTo": "rdfs:label",
+      "type": "xsd:string"
+    }
   },
   "InstagramAccount": {
-    "handle": "El handle de la cuenta de instagram es",
-    "id": "El id de la cuenta de instagram es",
-    "name": "El nombre de la cuenta de instagram es",
-    "url": "La url de la cuenta de instagram es",
-    "verified": "¿Está verificada la cuenta de instagram?",
-    "platformId": "El id de la plataforma de la cuenta de instagram es",
-    "subscriberCount": "El número de subscriptores de la cuenta de instagram es",
-    "platform": "La plataforma de la cuenta de instagram es",
-    "profileImage": "La imagen de perfil de la cuenta de instagram es"
+    "handle": {
+      "mapTo:": ":handle",
+      "type": "xsd:string"
+    },
+    "id": {
+      "mapTo:": "dcmi:identifier",
+      "type": "xsd:string"
+    },
+    "name": {
+      "mapTo:": ":username",
+      "type": "xsd:string"
+    },
+    "url": {
+      "mapTo:": "schema:url",
+      "type": "xsd:string"
+    },
+    "verified": {
+      "mapTo:": ":isVerified",
+      "type": "xsd:boolean"
+    },
+    "platformId": {
+      "mapTo:": ":platformId",
+      "type": "xsd:string"
+    },
+    "subscriberCount": {
+      "mapTo:": ":subscriberCount",
+      "type": "xsd:integer"
+    },
+    "platform": {
+      "mapTo:": ":platform",
+      "type": "xsd:string"
+    },
+    "profileImage": {
+      "mapTo:": ":profileImageUrl",
+      "type": "xsd:string"
+    }
   },
   "Language": {
-    "code": "El código del lenguaje es",
-    "name": "El nombre del lenguaje es"
+    "self": {
+      "mapTo:": ":Language"
+    },
+    "code": {
+      "mapTo:": "dcmi:identifier",
+      "type": "xsd:string"
+    },
+    "name": {
+      "mapTo:": "rdfs:label",
+      "type": "xsd:string"
+    }
   }
 }
